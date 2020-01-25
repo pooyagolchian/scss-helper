@@ -7,7 +7,7 @@
 
 $x: 1;
 
-@while $x < 6 {
+@while $x < 20 {
     .font-large-#{$x} {
         font-size: $x * 1em;
     }
@@ -15,13 +15,33 @@ $x: 1;
     $x: $x+1;
 }
 
-@while $x < 6 {
+$x: 1;
+
+@while $x < 20 {
     .font-medium-#{$x} {
         font-size: $x * .5em;
     }
 
     $x: $x+1;
 }
+
+
+
+$x: 1;
+
+@while $x < 20 {
+    .font-small-#{$x} {
+        font-size: $x * .5em;
+    }
+
+    $x: $x+1;
+}
+
+
+
+
+
+$x: 1;
 
 @while $x < 101 {
     .font-per-#{$x} {
