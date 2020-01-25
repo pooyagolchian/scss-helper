@@ -1,0 +1,24 @@
+{
+  "name": "@scss-helper/scss-helper",
+  "version": "1.0.0",
+  "description": "Scss helper for frontend project",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pooyagolchian/scss-helper.git"
+  },
+  "author": "Pooya Golchian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pooyagolchian/scss-helper/issues"
+  },
+  "homepage": "https://github.com/pooyagolchian/scss-helper#readme",
+  "keywords": [
+    "scss-helper"
+  ]
+}
