@@ -1,0 +1,437 @@
+/* 
+ ________  ________  ________   ________           ___  ___  _______   ___       ________  _______   ________     
+|\   ____\|\   ____\|\   ____\ |\   ____\         |\  \|\  \|\  ___ \ |\  \     |\   __  \|\  ___ \ |\   __  \    
+\ \  \___|\ \  \___|\ \  \___|_\ \  \___|_        \ \  \\\  \ \   __/|\ \  \    \ \  \|\  \ \   __/|\ \  \|\  \   
+ \ \_____  \ \  \    \ \_____  \\ \_____  \        \ \   __  \ \  \_|/_\ \  \    \ \   ____\ \  \_|/_\ \   _  _\  
+  \|____|\  \ \  \____\|____|\  \\|____|\  \        \ \  \ \  \ \  \_|\ \ \  \____\ \  \___|\ \  \_|\ \ \  \\  \| 
+    ____\_\  \ \_______\____\_\  \ ____\_\  \        \ \__\ \__\ \_______\ \_______\ \__\    \ \_______\ \__\\ _\ 
+   |\_________\|_______|\_________\\_________\        \|__|\|__|\|_______|\|_______|\|__|     \|_______|\|__|\|__|
+   \|_________|        \|_________\|_________|                                                                    
+                                                                                                                  
+Scss helper functionality to generate  modular css code.
+*/
+.text-1 {
+  font-size: 1em; }
+
+.text-2 {
+  font-size: 2em; }
+
+.text-3 {
+  font-size: 3em; }
+
+.text-4 {
+  font-size: 4em; }
+
+.text-5 {
+  font-size: 5em; }
+
+.text-6 {
+  font-size: 6em; }
+
+.text-7 {
+  font-size: 7em; }
+
+.text-8 {
+  font-size: 8em; }
+
+.text-9 {
+  font-size: 9em; }
+
+.text-10 {
+  font-size: 10em; }
+
+.text-11 {
+  font-size: 11em; }
+
+.text-12 {
+  font-size: 12em; }
+
+.font-large-1 {
+  font-size: 1em; }
+
+.font-large-2 {
+  font-size: 2em; }
+
+.font-large-3 {
+  font-size: 3em; }
+
+.font-large-4 {
+  font-size: 4em; }
+
+.font-large-5 {
+  font-size: 5em; }
+
+.font-per-6 {
+  font-size: 6%; }
+
+.font-per-7 {
+  font-size: 7%; }
+
+.font-per-8 {
+  font-size: 8%; }
+
+.font-per-9 {
+  font-size: 9%; }
+
+.font-per-10 {
+  font-size: 10%; }
+
+.font-per-11 {
+  font-size: 11%; }
+
+.font-per-12 {
+  font-size: 12%; }
+
+.font-per-13 {
+  font-size: 13%; }
+
+.font-per-14 {
+  font-size: 14%; }
+
+.font-per-15 {
+  font-size: 15%; }
+
+.font-per-16 {
+  font-size: 16%; }
+
+.font-per-17 {
+  font-size: 17%; }
+
+.font-per-18 {
+  font-size: 18%; }
+
+.font-per-19 {
+  font-size: 19%; }
+
+.font-per-20 {
+  font-size: 20%; }
+
+.font-per-21 {
+  font-size: 21%; }
+
+.font-per-22 {
+  font-size: 22%; }
+
+.font-per-23 {
+  font-size: 23%; }
+
+.font-per-24 {
+  font-size: 24%; }
+
+.font-per-25 {
+  font-size: 25%; }
+
+.font-per-26 {
+  font-size: 26%; }
+
+.font-per-27 {
+  font-size: 27%; }
+
+.font-per-28 {
+  font-size: 28%; }
+
+.font-per-29 {
+  font-size: 29%; }
+
+.font-per-30 {
+  font-size: 30%; }
+
+.font-per-31 {
+  font-size: 31%; }
+
+.font-per-32 {
+  font-size: 32%; }
+
+.font-per-33 {
+  font-size: 33%; }
+
+.font-per-34 {
+  font-size: 34%; }
+
+.font-per-35 {
+  font-size: 35%; }
+
+.font-per-36 {
+  font-size: 36%; }
+
+.font-per-37 {
+  font-size: 37%; }
+
+.font-per-38 {
+  font-size: 38%; }
+
+.font-per-39 {
+  font-size: 39%; }
+
+.font-per-40 {
+  font-size: 40%; }
+
+.font-per-41 {
+  font-size: 41%; }
+
+.font-per-42 {
+  font-size: 42%; }
+
+.font-per-43 {
+  font-size: 43%; }
+
+.font-per-44 {
+  font-size: 44%; }
+
+.font-per-45 {
+  font-size: 45%; }
+
+.font-per-46 {
+  font-size: 46%; }
+
+.font-per-47 {
+  font-size: 47%; }
+
+.font-per-48 {
+  font-size: 48%; }
+
+.font-per-49 {
+  font-size: 49%; }
+
+.font-per-50 {
+  font-size: 50%; }
+
+.font-per-51 {
+  font-size: 51%; }
+
+.font-per-52 {
+  font-size: 52%; }
+
+.font-per-53 {
+  font-size: 53%; }
+
+.font-per-54 {
+  font-size: 54%; }
+
+.font-per-55 {
+  font-size: 55%; }
+
+.font-per-56 {
+  font-size: 56%; }
+
+.font-per-57 {
+  font-size: 57%; }
+
+.font-per-58 {
+  font-size: 58%; }
+
+.font-per-59 {
+  font-size: 59%; }
+
+.font-per-60 {
+  font-size: 60%; }
+
+.font-per-61 {
+  font-size: 61%; }
+
+.font-per-62 {
+  font-size: 62%; }
+
+.font-per-63 {
+  font-size: 63%; }
+
+.font-per-64 {
+  font-size: 64%; }
+
+.font-per-65 {
+  font-size: 65%; }
+
+.font-per-66 {
+  font-size: 66%; }
+
+.font-per-67 {
+  font-size: 67%; }
+
+.font-per-68 {
+  font-size: 68%; }
+
+.font-per-69 {
+  font-size: 69%; }
+
+.font-per-70 {
+  font-size: 70%; }
+
+.font-per-71 {
+  font-size: 71%; }
+
+.font-per-72 {
+  font-size: 72%; }
+
+.font-per-73 {
+  font-size: 73%; }
+
+.font-per-74 {
+  font-size: 74%; }
+
+.font-per-75 {
+  font-size: 75%; }
+
+.font-per-76 {
+  font-size: 76%; }
+
+.font-per-77 {
+  font-size: 77%; }
+
+.font-per-78 {
+  font-size: 78%; }
+
+.font-per-79 {
+  font-size: 79%; }
+
+.font-per-80 {
+  font-size: 80%; }
+
+.font-per-81 {
+  font-size: 81%; }
+
+.font-per-82 {
+  font-size: 82%; }
+
+.font-per-83 {
+  font-size: 83%; }
+
+.font-per-84 {
+  font-size: 84%; }
+
+.font-per-85 {
+  font-size: 85%; }
+
+.font-per-86 {
+  font-size: 86%; }
+
+.font-per-87 {
+  font-size: 87%; }
+
+.font-per-88 {
+  font-size: 88%; }
+
+.font-per-89 {
+  font-size: 89%; }
+
+.font-per-90 {
+  font-size: 90%; }
+
+.font-per-91 {
+  font-size: 91%; }
+
+.font-per-92 {
+  font-size: 92%; }
+
+.font-per-93 {
+  font-size: 93%; }
+
+.font-per-94 {
+  font-size: 94%; }
+
+.font-per-95 {
+  font-size: 95%; }
+
+.font-per-96 {
+  font-size: 96%; }
+
+.font-per-97 {
+  font-size: 97%; }
+
+.font-per-98 {
+  font-size: 98%; }
+
+.font-per-99 {
+  font-size: 99%; }
+
+.font-per-100 {
+  font-size: 100%; }
+
+.red-text {
+  color: red; }
+
+.blue-text {
+  color: blue; }
+
+.green-text {
+  color: green; }
+
+.red-bg {
+  background-color: red; }
+
+.blue-bg {
+  background-color: blue; }
+
+.green-bg {
+  background-color: green; }
+
+.col-1 {
+  width: 4.16667%; }
+
+.col-2 {
+  width: 8.33333%; }
+
+.col-3 {
+  width: 12.5%; }
+
+.col-4 {
+  width: 16.66667%; }
+
+.col-5 {
+  width: 20.83333%; }
+
+.col-6 {
+  width: 25%; }
+
+.col-7 {
+  width: 29.16667%; }
+
+.col-8 {
+  width: 33.33333%; }
+
+.col-9 {
+  width: 37.5%; }
+
+.col-10 {
+  width: 41.66667%; }
+
+.col-11 {
+  width: 45.83333%; }
+
+.col-12 {
+  width: 50%; }
+
+.col-13 {
+  width: 54.16667%; }
+
+.col-14 {
+  width: 58.33333%; }
+
+.col-15 {
+  width: 62.5%; }
+
+.col-16 {
+  width: 66.66667%; }
+
+.col-17 {
+  width: 70.83333%; }
+
+.col-18 {
+  width: 75%; }
+
+.col-19 {
+  width: 79.16667%; }
+
+.col-20 {
+  width: 83.33333%; }
+
+.col-21 {
+  width: 87.5%; }
+
+.col-22 {
+  width: 91.66667%; }
+
+.col-23 {
+  width: 95.83333%; }
+
+.col-24 {
+  width: 100%; }
