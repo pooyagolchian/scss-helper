@@ -1,0 +1,50 @@
+@mixin text-effect($value) {
+    @if $value==danger {
+        color: red;
+    }
+
+    @else if $value==alert {
+        color: yellow;
+    }
+
+    @else if $value==success {
+        color: green;
+    }
+
+    @else {
+        color: black;
+    }
+}
+
+
+@mixin border-stroke($value) {
+    @if $value==light {
+        border: 1px solid black;
+    }
+
+    @else if $value==medium {
+        border: 3px solid black;
+    }
+
+    @else if $value==heavy {
+        border: 6px solid black;
+    }
+
+    @else {
+        border: none;
+    }
+}
+
+@mixin box-shadow($x, $y, $blur, $c) {
+    -webkit-box-shadow: $x, $y, $blur, $c;
+    -moz-box-shadow: $x, $y, $blur, $c;
+    -ms-box-shadow: $x, $y, $blur, $c;
+    box-shadow: $x, $y, $blur, $c;
+}
+
+@mixin border-rdius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
