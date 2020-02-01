@@ -8,11 +8,15 @@
 
 ## Compile and watch
  I'm using node-sass to compile and watch scss files.
-#### compile: 
+#### Compile: 
 
 ``` node-sass src/index.scss dist/style.css ```
 
 
-#### watch:
+#### Watch:
 
 ``` node-sass src/index.scss dist/style.css -w ```
+
+#### Install
+``` npm install scss-helper --save-dev ```
+``` yarn add scss-helper --save-dev ```
