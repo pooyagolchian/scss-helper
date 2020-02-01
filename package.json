@@ -1,5 +1,5 @@
 {
-  "name": "@scss-helper/scss-helper",
+  "name": "@pooya/scss-helper",
   "version": "1.0.0",
   "description": "Scss helper for frontend project",
   "main": "index.js",
