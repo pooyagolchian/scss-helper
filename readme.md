@@ -19,7 +19,7 @@ Package for scss project to generate useful style without tears!
 
 ``` node-sass src/index.scss dist/style.css -w ```
 
-#### Install
+#### Install:
 This repo release on npm package.
 
 ``` npm install scss-helper --save-dev ```
