@@ -1,0 +1,26 @@
+@for $i from 0 through 100 {
+  .mt-#{$i} {
+    margin-top: $i + px;
+  }
+}
+@for $i from 0 through 100 {
+  .mb-#{$i} {
+    margin-bottom: $i + px;
+  }
+}
+@for $i from 0 through 100 {
+  .ml-#{$i} {
+    margin-left: $i + px;
+  }
+}
+@for $i from 0 through 100 {
+  .mr-#{$i} {
+    margin-right: $i + px;
+  }
+}
+
+@for $i from 0 through 100 {
+  .m-auto-#{$i} {
+    margin: $i + px auto;
+  }
+}

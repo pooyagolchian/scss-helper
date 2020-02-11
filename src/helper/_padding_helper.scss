@@ -1,0 +1,20 @@
+@for $i from 0 through 100 {
+  .pt-#{$i} {
+    padding-top: $i + px;
+  }
+}
+@for $i from 0 through 100 {
+  .pb-#{$i} {
+    padding-bottom: $i + px;
+  }
+}
+@for $i from 0 through 100 {
+  .pl-#{$i} {
+    padding-left: $i + px;
+  }
+}
+@for $i from 0 through 100 {
+  .pr-#{$i} {
+    padding-right: $i + px;
+  }
+}
