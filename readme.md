@@ -15,22 +15,26 @@ Package for scss project to generate useful style without tears!
 
 I'm using node-sass to compile and watch scss files.
 
-#### Compile:
+#### Compile production:
 
-`node-sass src/index.scss dist/style.css`
+`npm run build:prod`
+
+#### Compile development:
+
+`npm run build:dev`
 
 #### Watch:
 
-`node-sass src/style.scss dist/style.css -w`
+`npm run watch`
 
-##### Only css-grid watch
-
-`node-sass src/only-css-grid.scss dist/css-grid.css -w`
-
-#### Install:
+#### Install package on npm repo:
 
 This repo release on npm package.
 
 `npm install scss-helper --save-dev`
 
 `yarn add scss-helper --save-dev`
+
+#### Install Github repo
+
+`npm install`
