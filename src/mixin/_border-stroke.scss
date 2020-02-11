@@ -1,0 +1,12 @@
+
+@mixin border-stroke($value) {
+  @if $value==light {
+    border: $border-width-light solid $black;
+  } @else if $value==medium {
+    border: $border-width-medium solid $black;
+  } @else if $value==heavy {
+    border: $border-width-heavy solid $black;
+  } @else {
+    border: none;
+  }
+}

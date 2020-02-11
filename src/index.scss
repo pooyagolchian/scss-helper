@@ -9,11 +9,11 @@
    \|_________|        \|_________\|_________|                                                                    
                                                                                                                   
 Scss helper functionality to generate  modular css code.
+This package develope by Pooya Golchian.
+Website: https://pooyagolchian.github.io/
+Gmail: pooya.golchian@gmail.com
 */
-
-@import "./font-helper";
-@import "./color-helper";
-@import "./grid_helper";
-@import "./visual-design-helper";
-
-
+@import "variables";
+@import "mixin";
+@import "helper";
+@import "modiers";

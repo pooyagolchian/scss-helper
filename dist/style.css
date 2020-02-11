@@ -9,532 +9,12 @@
    \|_________|        \|_________\|_________|                                                                    
                                                                                                                   
 Scss helper functionality to generate  modular css code.
+This package develope by Pooya Golchian.
+Website: https://pooyagolchian.github.io/
+Gmail: pooya.golchian@gmail.com
+GitHub: https://github.com/pooyagolchian
+NPM: https://www.npmjs.com/package/@pooya/scss-helper
 */
-.text-1 {
-  font-size: 1em; }
-
-.text-2 {
-  font-size: 2em; }
-
-.text-3 {
-  font-size: 3em; }
-
-.text-4 {
-  font-size: 4em; }
-
-.text-5 {
-  font-size: 5em; }
-
-.text-6 {
-  font-size: 6em; }
-
-.text-7 {
-  font-size: 7em; }
-
-.text-8 {
-  font-size: 8em; }
-
-.text-9 {
-  font-size: 9em; }
-
-.text-10 {
-  font-size: 10em; }
-
-.text-11 {
-  font-size: 11em; }
-
-.text-12 {
-  font-size: 12em; }
-
-.font-large-1 {
-  font-size: 1em; }
-
-.font-large-2 {
-  font-size: 2em; }
-
-.font-large-3 {
-  font-size: 3em; }
-
-.font-large-4 {
-  font-size: 4em; }
-
-.font-large-5 {
-  font-size: 5em; }
-
-.font-large-6 {
-  font-size: 6em; }
-
-.font-large-7 {
-  font-size: 7em; }
-
-.font-large-8 {
-  font-size: 8em; }
-
-.font-large-9 {
-  font-size: 9em; }
-
-.font-large-10 {
-  font-size: 10em; }
-
-.font-large-11 {
-  font-size: 11em; }
-
-.font-large-12 {
-  font-size: 12em; }
-
-.font-large-13 {
-  font-size: 13em; }
-
-.font-large-14 {
-  font-size: 14em; }
-
-.font-large-15 {
-  font-size: 15em; }
-
-.font-large-16 {
-  font-size: 16em; }
-
-.font-large-17 {
-  font-size: 17em; }
-
-.font-large-18 {
-  font-size: 18em; }
-
-.font-large-19 {
-  font-size: 19em; }
-
-.font-medium-1 {
-  font-size: 0.5em; }
-
-.font-medium-2 {
-  font-size: 1em; }
-
-.font-medium-3 {
-  font-size: 1.5em; }
-
-.font-medium-4 {
-  font-size: 2em; }
-
-.font-medium-5 {
-  font-size: 2.5em; }
-
-.font-medium-6 {
-  font-size: 3em; }
-
-.font-medium-7 {
-  font-size: 3.5em; }
-
-.font-medium-8 {
-  font-size: 4em; }
-
-.font-medium-9 {
-  font-size: 4.5em; }
-
-.font-medium-10 {
-  font-size: 5em; }
-
-.font-medium-11 {
-  font-size: 5.5em; }
-
-.font-medium-12 {
-  font-size: 6em; }
-
-.font-medium-13 {
-  font-size: 6.5em; }
-
-.font-medium-14 {
-  font-size: 7em; }
-
-.font-medium-15 {
-  font-size: 7.5em; }
-
-.font-medium-16 {
-  font-size: 8em; }
-
-.font-medium-17 {
-  font-size: 8.5em; }
-
-.font-medium-18 {
-  font-size: 9em; }
-
-.font-medium-19 {
-  font-size: 9.5em; }
-
-.font-small-1 {
-  font-size: 0.5em; }
-
-.font-small-2 {
-  font-size: 1em; }
-
-.font-small-3 {
-  font-size: 1.5em; }
-
-.font-small-4 {
-  font-size: 2em; }
-
-.font-small-5 {
-  font-size: 2.5em; }
-
-.font-small-6 {
-  font-size: 3em; }
-
-.font-small-7 {
-  font-size: 3.5em; }
-
-.font-small-8 {
-  font-size: 4em; }
-
-.font-small-9 {
-  font-size: 4.5em; }
-
-.font-small-10 {
-  font-size: 5em; }
-
-.font-small-11 {
-  font-size: 5.5em; }
-
-.font-small-12 {
-  font-size: 6em; }
-
-.font-small-13 {
-  font-size: 6.5em; }
-
-.font-small-14 {
-  font-size: 7em; }
-
-.font-small-15 {
-  font-size: 7.5em; }
-
-.font-small-16 {
-  font-size: 8em; }
-
-.font-small-17 {
-  font-size: 8.5em; }
-
-.font-small-18 {
-  font-size: 9em; }
-
-.font-small-19 {
-  font-size: 9.5em; }
-
-.font-per-1 {
-  font-size: 1%; }
-
-.font-per-2 {
-  font-size: 2%; }
-
-.font-per-3 {
-  font-size: 3%; }
-
-.font-per-4 {
-  font-size: 4%; }
-
-.font-per-5 {
-  font-size: 5%; }
-
-.font-per-6 {
-  font-size: 6%; }
-
-.font-per-7 {
-  font-size: 7%; }
-
-.font-per-8 {
-  font-size: 8%; }
-
-.font-per-9 {
-  font-size: 9%; }
-
-.font-per-10 {
-  font-size: 10%; }
-
-.font-per-11 {
-  font-size: 11%; }
-
-.font-per-12 {
-  font-size: 12%; }
-
-.font-per-13 {
-  font-size: 13%; }
-
-.font-per-14 {
-  font-size: 14%; }
-
-.font-per-15 {
-  font-size: 15%; }
-
-.font-per-16 {
-  font-size: 16%; }
-
-.font-per-17 {
-  font-size: 17%; }
-
-.font-per-18 {
-  font-size: 18%; }
-
-.font-per-19 {
-  font-size: 19%; }
-
-.font-per-20 {
-  font-size: 20%; }
-
-.font-per-21 {
-  font-size: 21%; }
-
-.font-per-22 {
-  font-size: 22%; }
-
-.font-per-23 {
-  font-size: 23%; }
-
-.font-per-24 {
-  font-size: 24%; }
-
-.font-per-25 {
-  font-size: 25%; }
-
-.font-per-26 {
-  font-size: 26%; }
-
-.font-per-27 {
-  font-size: 27%; }
-
-.font-per-28 {
-  font-size: 28%; }
-
-.font-per-29 {
-  font-size: 29%; }
-
-.font-per-30 {
-  font-size: 30%; }
-
-.font-per-31 {
-  font-size: 31%; }
-
-.font-per-32 {
-  font-size: 32%; }
-
-.font-per-33 {
-  font-size: 33%; }
-
-.font-per-34 {
-  font-size: 34%; }
-
-.font-per-35 {
-  font-size: 35%; }
-
-.font-per-36 {
-  font-size: 36%; }
-
-.font-per-37 {
-  font-size: 37%; }
-
-.font-per-38 {
-  font-size: 38%; }
-
-.font-per-39 {
-  font-size: 39%; }
-
-.font-per-40 {
-  font-size: 40%; }
-
-.font-per-41 {
-  font-size: 41%; }
-
-.font-per-42 {
-  font-size: 42%; }
-
-.font-per-43 {
-  font-size: 43%; }
-
-.font-per-44 {
-  font-size: 44%; }
-
-.font-per-45 {
-  font-size: 45%; }
-
-.font-per-46 {
-  font-size: 46%; }
-
-.font-per-47 {
-  font-size: 47%; }
-
-.font-per-48 {
-  font-size: 48%; }
-
-.font-per-49 {
-  font-size: 49%; }
-
-.font-per-50 {
-  font-size: 50%; }
-
-.font-per-51 {
-  font-size: 51%; }
-
-.font-per-52 {
-  font-size: 52%; }
-
-.font-per-53 {
-  font-size: 53%; }
-
-.font-per-54 {
-  font-size: 54%; }
-
-.font-per-55 {
-  font-size: 55%; }
-
-.font-per-56 {
-  font-size: 56%; }
-
-.font-per-57 {
-  font-size: 57%; }
-
-.font-per-58 {
-  font-size: 58%; }
-
-.font-per-59 {
-  font-size: 59%; }
-
-.font-per-60 {
-  font-size: 60%; }
-
-.font-per-61 {
-  font-size: 61%; }
-
-.font-per-62 {
-  font-size: 62%; }
-
-.font-per-63 {
-  font-size: 63%; }
-
-.font-per-64 {
-  font-size: 64%; }
-
-.font-per-65 {
-  font-size: 65%; }
-
-.font-per-66 {
-  font-size: 66%; }
-
-.font-per-67 {
-  font-size: 67%; }
-
-.font-per-68 {
-  font-size: 68%; }
-
-.font-per-69 {
-  font-size: 69%; }
-
-.font-per-70 {
-  font-size: 70%; }
-
-.font-per-71 {
-  font-size: 71%; }
-
-.font-per-72 {
-  font-size: 72%; }
-
-.font-per-73 {
-  font-size: 73%; }
-
-.font-per-74 {
-  font-size: 74%; }
-
-.font-per-75 {
-  font-size: 75%; }
-
-.font-per-76 {
-  font-size: 76%; }
-
-.font-per-77 {
-  font-size: 77%; }
-
-.font-per-78 {
-  font-size: 78%; }
-
-.font-per-79 {
-  font-size: 79%; }
-
-.font-per-80 {
-  font-size: 80%; }
-
-.font-per-81 {
-  font-size: 81%; }
-
-.font-per-82 {
-  font-size: 82%; }
-
-.font-per-83 {
-  font-size: 83%; }
-
-.font-per-84 {
-  font-size: 84%; }
-
-.font-per-85 {
-  font-size: 85%; }
-
-.font-per-86 {
-  font-size: 86%; }
-
-.font-per-87 {
-  font-size: 87%; }
-
-.font-per-88 {
-  font-size: 88%; }
-
-.font-per-89 {
-  font-size: 89%; }
-
-.font-per-90 {
-  font-size: 90%; }
-
-.font-per-91 {
-  font-size: 91%; }
-
-.font-per-92 {
-  font-size: 92%; }
-
-.font-per-93 {
-  font-size: 93%; }
-
-.font-per-94 {
-  font-size: 94%; }
-
-.font-per-95 {
-  font-size: 95%; }
-
-.font-per-96 {
-  font-size: 96%; }
-
-.font-per-97 {
-  font-size: 97%; }
-
-.font-per-98 {
-  font-size: 98%; }
-
-.font-per-99 {
-  font-size: 99%; }
-
-.font-per-100 {
-  font-size: 100%; }
-
-.red-text {
-  color: red; }
-
-.blue-text {
-  color: blue; }
-
-.green-text {
-  color: green; }
-
-.red-bg {
-  background-color: red; }
-
-.blue-bg {
-  background-color: blue; }
-
-.green-bg {
-  background-color: green; }
-
 .col-1 {
   width: 4.16667%; }
 
@@ -606,3 +86,396 @@ Scss helper functionality to generate  modular css code.
 
 .col-24 {
   width: 100%; }
+
+.fs-1 {
+  font-size: 1px; }
+
+.fs-2 {
+  font-size: 2px; }
+
+.fs-3 {
+  font-size: 3px; }
+
+.fs-4 {
+  font-size: 4px; }
+
+.fs-5 {
+  font-size: 5px; }
+
+.fs-6 {
+  font-size: 6px; }
+
+.fs-7 {
+  font-size: 7px; }
+
+.fs-8 {
+  font-size: 8px; }
+
+.fs-9 {
+  font-size: 9px; }
+
+.fs-10 {
+  font-size: 10px; }
+
+.fs-11 {
+  font-size: 11px; }
+
+.fs-12 {
+  font-size: 12px; }
+
+.fs-13 {
+  font-size: 13px; }
+
+.fs-14 {
+  font-size: 14px; }
+
+.fs-15 {
+  font-size: 15px; }
+
+.fs-16 {
+  font-size: 16px; }
+
+.fs-17 {
+  font-size: 17px; }
+
+.fs-18 {
+  font-size: 18px; }
+
+.fs-19 {
+  font-size: 19px; }
+
+.fs-20 {
+  font-size: 20px; }
+
+.fs-21 {
+  font-size: 21px; }
+
+.fs-22 {
+  font-size: 22px; }
+
+.fs-23 {
+  font-size: 23px; }
+
+.fs-24 {
+  font-size: 24px; }
+
+.fs-25 {
+  font-size: 25px; }
+
+.fs-26 {
+  font-size: 26px; }
+
+.fs-27 {
+  font-size: 27px; }
+
+.fs-28 {
+  font-size: 28px; }
+
+.fs-29 {
+  font-size: 29px; }
+
+.fs-30 {
+  font-size: 30px; }
+
+.fs-31 {
+  font-size: 31px; }
+
+.fs-32 {
+  font-size: 32px; }
+
+.fs-33 {
+  font-size: 33px; }
+
+.fs-34 {
+  font-size: 34px; }
+
+.fs-35 {
+  font-size: 35px; }
+
+.fs-36 {
+  font-size: 36px; }
+
+.fs-37 {
+  font-size: 37px; }
+
+.fs-38 {
+  font-size: 38px; }
+
+.fs-39 {
+  font-size: 39px; }
+
+.fs-40 {
+  font-size: 40px; }
+
+.fs-41 {
+  font-size: 41px; }
+
+.fs-42 {
+  font-size: 42px; }
+
+.fs-43 {
+  font-size: 43px; }
+
+.fs-44 {
+  font-size: 44px; }
+
+.fs-45 {
+  font-size: 45px; }
+
+.fs-46 {
+  font-size: 46px; }
+
+.fs-47 {
+  font-size: 47px; }
+
+.fs-48 {
+  font-size: 48px; }
+
+.fs-49 {
+  font-size: 49px; }
+
+.fs-50 {
+  font-size: 50px; }
+
+.fs-51 {
+  font-size: 51px; }
+
+.fs-52 {
+  font-size: 52px; }
+
+.fs-53 {
+  font-size: 53px; }
+
+.fs-54 {
+  font-size: 54px; }
+
+.fs-55 {
+  font-size: 55px; }
+
+.fs-56 {
+  font-size: 56px; }
+
+.fs-57 {
+  font-size: 57px; }
+
+.fs-58 {
+  font-size: 58px; }
+
+.fs-59 {
+  font-size: 59px; }
+
+.fs-60 {
+  font-size: 60px; }
+
+.fs-61 {
+  font-size: 61px; }
+
+.fs-62 {
+  font-size: 62px; }
+
+.fs-63 {
+  font-size: 63px; }
+
+.fs-64 {
+  font-size: 64px; }
+
+.fs-65 {
+  font-size: 65px; }
+
+.fs-66 {
+  font-size: 66px; }
+
+.fs-67 {
+  font-size: 67px; }
+
+.fs-68 {
+  font-size: 68px; }
+
+.fs-69 {
+  font-size: 69px; }
+
+.fs-70 {
+  font-size: 70px; }
+
+.fs-71 {
+  font-size: 71px; }
+
+.fs-72 {
+  font-size: 72px; }
+
+.fs-73 {
+  font-size: 73px; }
+
+.fs-74 {
+  font-size: 74px; }
+
+.fs-75 {
+  font-size: 75px; }
+
+.fs-76 {
+  font-size: 76px; }
+
+.fs-77 {
+  font-size: 77px; }
+
+.fs-78 {
+  font-size: 78px; }
+
+.fs-79 {
+  font-size: 79px; }
+
+.fs-80 {
+  font-size: 80px; }
+
+.fs-81 {
+  font-size: 81px; }
+
+.fs-82 {
+  font-size: 82px; }
+
+.fs-83 {
+  font-size: 83px; }
+
+.fs-84 {
+  font-size: 84px; }
+
+.fs-85 {
+  font-size: 85px; }
+
+.fs-86 {
+  font-size: 86px; }
+
+.fs-87 {
+  font-size: 87px; }
+
+.fs-88 {
+  font-size: 88px; }
+
+.fs-89 {
+  font-size: 89px; }
+
+.fs-90 {
+  font-size: 90px; }
+
+.fs-91 {
+  font-size: 91px; }
+
+.fs-92 {
+  font-size: 92px; }
+
+.fs-93 {
+  font-size: 93px; }
+
+.fs-94 {
+  font-size: 94px; }
+
+.fs-95 {
+  font-size: 95px; }
+
+.fs-96 {
+  font-size: 96px; }
+
+.fs-97 {
+  font-size: 97px; }
+
+.fs-98 {
+  font-size: 98px; }
+
+.fs-99 {
+  font-size: 99px; }
+
+.fs-100 {
+  font-size: 100px; }
+
+.text-red {
+  color: #ff3538; }
+
+.text-white {
+  color: #fff; }
+
+.text-black {
+  color: #000; }
+
+.text-gray {
+  color: #333; }
+
+.text-gray-100 {
+  color: #f8f9fa; }
+
+.text-gray-200 {
+  color: #e9ecef; }
+
+.text-gray-300 {
+  color: #dee2e6; }
+
+.text-gray-400 {
+  color: #ced4da; }
+
+.text-gray-500 {
+  color: #adb5bd; }
+
+.text-gray-600 {
+  color: #6c757d; }
+
+.text-gray-700 {
+  color: #495057; }
+
+.text-gray-800 {
+  color: #343a40; }
+
+.text-gray-900 {
+  color: #212529; }
+
+.text-primary {
+  color: #0d6efd; }
+
+.text-secondary {
+  color: #6c757d; }
+
+.text-success {
+  color: #28a745; }
+
+.text-info {
+  color: #17a2b8; }
+
+.text-warning {
+  color: #ffc107; }
+
+.text-danger {
+  color: #dc3545; }
+
+.text-light {
+  color: #f8f9fa; }
+
+.text-dark {
+  color: #343a40; }
+
+.fs-small {
+  font-size: 12px; }
+
+.fs-medium {
+  font-size: 14px; }
+
+.fs-large {
+  font-size: 16px; }
+
+.fs-x-large {
+  font-size: 18px; }
+
+.fs-xx-large {
+  font-size: 20px; }
+
+.font-weight-lighter {
+  font-weight: lighter; }
+
+.font-weight-light {
+  font-weight: 300; }
+
+.font-weight-normal {
+  font-weight: 400; }
+
+.font-weight-bold {
+  font-weight: 700; }
+
+.font-weight-bolder {
+  font-weight: bolder; }

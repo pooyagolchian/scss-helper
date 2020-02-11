@@ -1,0 +1,115 @@
+$white: #fff !default;
+$black: #000 !default;
+$gray-base: #333;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$blue: #0d6efd !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+$border-width-light: 1px !default;
+$border-width-medium: 3px !default;
+$border-width-heavy: 6px !default;
+
+$font-size-base: 1rem !default;
+$font-size-lg: $font-size-base * 1.25 !default;
+$font-size-sm: $font-size-base * 0.875 !default;
+
+$font-weight-lighter: lighter !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: bolder !default;
+
+$font-weight-base: $font-weight-normal !default;
+
+$line-height-base: 1.5 !default;
+$line-height-lg: 2 !default;
+$line-height-sm: 1.25 !default;
+
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.75 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;
+
+$colors: (
+  red: #ff3538,
+  white: $white,
+  black: $black,
+  gray: (
+    base: $gray-base,
+    100: $gray-100,
+    200: $gray-200,
+    300: $gray-300,
+    400: $gray-400,
+    500: $gray-500,
+    600: $gray-600,
+    700: $gray-700,
+    800: $gray-800,
+    900: $gray-900
+  ),
+  primary: (
+    base: $primary
+  ),
+  secondary: (
+    base: $secondary
+  ),
+  success: (
+    base: $success
+  ),
+  info: (
+    base: $info
+  ),
+  warning: (
+    base: $warning
+  ),
+  danger: (
+    base: $danger
+  ),
+  light: (
+    base: $light
+  ),
+  dark: (
+    base: $dark
+  )
+);
+$font-sizes: (
+  small: 12px,
+  medium: 14px,
+  large: 16px,
+  x-large: 18px,
+  xx-large: 20px
+);
+
+
+$font-weight: (
+  lighter: $font-weight-lighter,
+  light: $font-weight-light,
+  normal: $font-weight-normal,
+  bold: $font-weight-bold,
+  bolder: $font-weight-bolder,
+);
+
