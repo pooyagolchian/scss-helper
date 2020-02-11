@@ -1,3 +1,4 @@
+// COLORS
 $white: #fff !default;
 $black: #000 !default;
 $gray-base: #333;
@@ -28,10 +29,11 @@ $warning: $yellow !default;
 $danger: $red !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
+// BORDER
 $border-width-light: 1px !default;
 $border-width-medium: 3px !default;
 $border-width-heavy: 6px !default;
-
+// FONTS
 $font-size-base: 1rem !default;
 $font-size-lg: $font-size-base * 1.25 !default;
 $font-size-sm: $font-size-base * 0.875 !default;
@@ -54,7 +56,17 @@ $h3-font-size: $font-size-base * 1.75 !default;
 $h4-font-size: $font-size-base * 1.5 !default;
 $h5-font-size: $font-size-base * 1.25 !default;
 $h6-font-size: $font-size-base !default;
-
+// GRID
+$grid-columns: 12 !default;
+// breakpoints
+$breakpoints: (
+  xs: 32rem,
+  sm: 48rem,
+  md: 64rem,
+  lg: 80rem,
+  xl: 90rem
+) !default;
+// COLOR_MAP
 $colors: (
   red: #ff3538,
   white: $white,
@@ -96,6 +108,7 @@ $colors: (
     base: $dark
   )
 );
+// FOTNS_MAP
 $font-sizes: (
   small: 12px,
   medium: 14px,
@@ -104,12 +117,10 @@ $font-sizes: (
   xx-large: 20px
 );
 
-
 $font-weight: (
   lighter: $font-weight-lighter,
   light: $font-weight-light,
   normal: $font-weight-normal,
   bold: $font-weight-bold,
-  bolder: $font-weight-bolder,
+  bolder: $font-weight-bolder
 );
-

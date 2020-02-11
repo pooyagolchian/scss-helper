@@ -12,13 +12,17 @@
     "type": "git",
     "url": "git+https://github.com/pooyagolchian/scss-helper.git"
   },
-  "author": "Pooya Golchian",
+  "author": "Pooya Golchian <pooya.golchian@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pooyagolchian/scss-helper/issues"
   },
   "homepage": "https://github.com/pooyagolchian/scss-helper#readme",
   "keywords": [
-    "scss-helper"
+    "scss-helper",
+    "scss",
+    "css",
+    "css-grid",
+    "grid"
   ]
 }

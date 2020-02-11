@@ -1,6 +1,9 @@
 .text {
   @include modifiers($colors, "color", $separator: "-");
 }
+.bg {
+  @include modifiers($colors, "background-color", $separator: "-");
+}
 .fs {
   @include modifiers($font-sizes, "font-size", "-");
 }
