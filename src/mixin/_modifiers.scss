@@ -1,14 +1,14 @@
 @mixin modifiers(
-  $map,
-  $attribute,
-  $prefix: "-",
-  $separator: "-",
-  $base: "base"
+  $map,               // The map containing the modifiers and their values
+  $attribute,         // The CSS property (e.g., "color", "margin")
+  $prefix: "-",       // Optional prefix for modifiers (e.g., "-")
+  $separator: "-",    // Optional separator between base class and modifier
+  $base: "base"       // The base class, for which no modifier is needed
 ) {
   @each $key, $value in $map {
-    &#{if($key != $base, #{$prefix}#{$key},'') } {
+    &#{if($key != $base, $prefix + $key, "")} {
       @if type-of($value) == "map" {
-        @include modifiers($value, $attribute, $separator);
+        @include modifiers($value, $attribute, $prefix, $separator);
       } @else {
         #{$attribute}: $value;
       }

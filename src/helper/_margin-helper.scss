@@ -1,26 +1,31 @@
-@for $i from 0 through 100 {
-  .mt-#{$i} {
-    margin-top: $i + px;
-  }
+// Helper function to handle margin size calculation
+@function generate-margin-size($size) {
+  @return $size + px;
 }
-@for $i from 0 through 100 {
-  .mb-#{$i} {
-    margin-bottom: $i + px;
-  }
-}
-@for $i from 0 through 100 {
-  .ml-#{$i} {
-    margin-left: $i + px;
-  }
-}
-@for $i from 0 through 100 {
-  .mr-#{$i} {
-    margin-right: $i + px;
+
+// Mixin to generate margin classes for all directions
+@mixin generate-margin($property, $min-size, $max-size) {
+  @for $i from $min-size through $max-size {
+    .#{$property}-#{$i} {
+      #{$property}: generate-margin-size($i);
+    }
   }
 }
 
-@for $i from 0 through 100 {
-  .m-auto-#{$i} {
-    margin: $i + px auto;
+// Mixin to generate margin classes for auto-margin (center horizontally)
+@mixin generate-margin-auto($min-size, $max-size) {
+  @for $i from $min-size through $max-size {
+    .m-auto-#{$i} {
+      margin: generate-margin-size($i) auto;
+    }
   }
 }
+
+// Generate margin classes for all directions
+@include generate-margin(mt, 0, 100); // margin-top
+@include generate-margin(mb, 0, 100); // margin-bottom
+@include generate-margin(ml, 0, 100); // margin-left
+@include generate-margin(mr, 0, 100); // margin-right
+
+// Generate auto-margin classes
+@include generate-margin-auto(0, 100);

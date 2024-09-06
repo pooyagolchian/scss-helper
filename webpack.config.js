@@ -22,13 +22,16 @@ module.exports = {
             loader: "extract-loader"
           },
           {
-            loader: "css-loader?-url"
+            loader: "css-loader",
+            options: {
+              url: false // Disable URL handling if you don't need it
+            }
           },
           {
             loader: "postcss-loader"
           },
           {
-            loader: "sass-loader"
+            loader: "sass-loader" // No need to specify anything, dart-sass is used by default
           }
         ]
       }

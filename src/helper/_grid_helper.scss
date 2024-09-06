@@ -1,5 +1,33 @@
+@use 'sass:math';
+
+// Create a flexible grid container
+.sg-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+// Each column inside the grid will have padding for spacing
+.sg-col {
+  padding-right: 15px;
+  padding-left: 15px;
+  flex-grow: 1;
+}
+
+// Generate columns for 1 through 24
 @for $i from 1 through 24 {
   .sg-col-#{$i} {
-    width: (100%)/24 * $i;
+    width: math.div(100%, 24) * $i; // Replace deprecated division
+    flex: 0 0 math.div(100%, 24) * $i;
+    max-width: math.div(100%, 24) * $i;
+  }
+}
+
+// Optional: Add responsiveness (e.g., for mobile devices)
+@media (max-width: 768px) {
+  .sg-col {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 }

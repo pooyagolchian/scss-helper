@@ -1,5 +1,16 @@
-@for $i from 1 through 100 {
-  .fs-#{$i} {
-    font-size: $i + px;
+// Helper function to handle font size calculation
+@function generate-font-size($size) {
+  @return $size + px;
+}
+
+// Mixin to generate font size classes dynamically
+@mixin generate-font-sizes($min-size, $max-size) {
+  @for $i from $min-size through $max-size {
+    .fs-#{$i} {
+      font-size: generate-font-size($i);
+    }
   }
 }
+
+// Example usage of the mixin
+@include generate-font-sizes(1, 100);

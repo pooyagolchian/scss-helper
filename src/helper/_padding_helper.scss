@@ -1,20 +1,14 @@
-@for $i from 0 through 100 {
-  .pt-#{$i} {
-    padding-top: $i + px;
+// Helper Mixin to generate padding classes for any side
+@mixin generate-padding($side) {
+  @for $i from 0 through 100 {
+    .#{$side}-#{$i} {
+      padding-#{$side}: $i + px;
+    }
   }
 }
-@for $i from 0 through 100 {
-  .pb-#{$i} {
-    padding-bottom: $i + px;
-  }
-}
-@for $i from 0 through 100 {
-  .pl-#{$i} {
-    padding-left: $i + px;
-  }
-}
-@for $i from 0 through 100 {
-  .pr-#{$i} {
-    padding-right: $i + px;
-  }
-}
+
+// Generate padding-top, padding-bottom, padding-left, and padding-right classes
+@include generate-padding('t');  // padding-top
+@include generate-padding('b');  // padding-bottom
+@include generate-padding('l');  // padding-left
+@include generate-padding('r');  // padding-right
