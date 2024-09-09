@@ -223,6 +223,229 @@ Auto-fit grid layout adjusts columns based on available space.
 </div>
 ```
 
+---
+
+### 1. **Basic Grid Structure**
+
+#### Grid Container
+The `.grid` class defines a basic grid layout with customizable column count and gap between grid items.
+
+```scss
+.grid,
+[class*="grid-auto-"] {
+  display: grid;
+  grid-gap: var(--grid-gap, 0); // Sets the gap between grid items
+}
+```
+
+**Example:**
+```html
+<div class="grid">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+---
+
+### 2. **Column Count Customization**
+
+The `grid-template-columns` property dynamically calculates the number of columns based on a custom property `--grid-cols`, which can be set globally or locally.
+
+```scss
+.grid {
+  --grid-cols: 4; // Sets default column count
+  grid-template-columns: repeat(var(--grid-cols), 1fr); // Creates equal-width columns
+
+  > * {
+    grid-column: span var(--span, 4) / span var(--span, 4);
+  }
+}
+```
+
+**Example:**
+```html
+<div class="grid">
+  <div style="--span: 2">Item 1</div> <!-- Spans 2 columns -->
+  <div>Item 2</div> <!-- Default spans all columns -->
+</div>
+```
+
+---
+
+### 3. **Auto-Sized Grids**
+
+The `.grid-auto-*` classes automatically create columns that resize to fit available space, with a minimum column width defined by custom properties like `--col-min-width`.
+
+```scss
+.grid-auto-xs,
+.grid-auto-sm,
+.grid-auto-md,
+.grid-auto-lg,
+.grid-auto-xl {
+  grid-template-columns: repeat(auto-fit, minmax(var(--col-min-width), 1fr));
+}
+```
+
+**Column Size Examples:**
+```scss
+.grid-auto-xs {
+  --col-min-width: 8rem;
+}
+.grid-auto-sm {
+  --col-min-width: 10rem;
+}
+.grid-auto-md {
+  --col-min-width: 15rem;
+}
+```
+
+**Example:**
+```html
+<div class="grid-auto-xs">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+---
+
+### 4. **Grid Gaps (Spacing Between Items)**
+
+The `grid-gap` property can be customized using predefined classes like `.grid-gap-xs` for various spacing needs.
+
+```scss
+.grid-gap-xxxxs {
+  --grid-gap: var(--space-xxxxs, 0.125rem);
+}
+.grid-gap-md {
+  --grid-gap: var(--space-md, 1.25rem);
+}
+```
+
+**Example:**
+```html
+<div class="grid grid-gap-md">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</div>
+```
+
+---
+
+### 5. **Column Spans and Starts**
+
+Custom properties `--span`, `--col-start`, and `--col-end` are used to control how many columns an item spans or where a column starts and ends.
+
+```scss
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    --span: #{$i}; // Sets the span for the column
+  }
+
+  .col-start-#{$i} {
+    grid-column-start: #{$i}; // Starts the column at index i
+  }
+
+  .col-end-#{$i + 1} {
+    grid-column-end: #{$i + 1}; // Ends the column at index i+1
+  }
+}
+```
+
+**Example:**
+```html
+<div class="grid">
+  <div class="col-2">Item 1</div> <!-- Spans 2 columns -->
+  <div class="col-start-3 col-end-4">Item 2</div> <!-- Starts at column 3, ends at 4 -->
+</div>
+```
+
+---
+
+### 6. **Responsive Breakpoints**
+
+Using the `@mixin breakpoint`, grid layouts and custom column widths can be adapted for various screen sizes.
+
+```scss
+@mixin breakpoint($breakpoint) {
+  @media (min-width: map-get($breakpoints, $key: $breakpoint)) {
+    @content;
+  }
+}
+```
+
+#### Example of Responsive Grid:
+```scss
+@include breakpoint(xs) {
+  .grid-auto-xs-xsmall {
+    --col-min-width: 8rem;
+  }
+}
+
+@include breakpoint(sm) {
+  .grid-auto-sm-small {
+    --col-min-width: 10rem;
+  }
+}
+```
+
+---
+
+### 7. **Responsive Auto-Sized Columns**
+
+Each grid size has specific configurations for minimum column width, ensuring responsive design across devices.
+
+```scss
+@include breakpoint(md) {
+  .grid-auto-md-medium {
+    --col-min-width: 15rem;
+  }
+}
+
+@include breakpoint(lg) {
+  .grid-auto-lg-large {
+    --col-min-width: 20rem;
+  }
+}
+```
+
+---
+
+### 8. **Complete Example**
+
+Here’s a full HTML example using these concepts:
+
+```html
+<div class="grid grid-auto-md grid-gap-lg">
+  <div class="col-2">Item 1</div>
+  <div class="col-3">Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+</div>
+```
+
+### Explanation:
+- `.grid-auto-md`: Automatically sizes columns for medium devices.
+- `.grid-gap-lg`: Adds large spacing between grid items.
+- `.col-2`: First item spans 2 columns.
+- `.col-3`: Second item spans 3 columns.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
 ### Fixed Number of Columns
 
 Use `.col-#` classes to control the number of columns an item spans.
