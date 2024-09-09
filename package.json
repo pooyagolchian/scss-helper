@@ -1,6 +1,6 @@
 {
   "name": "scss-helper",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Scss helper for frontend project",
   "main": "index.js",
   "devDependencies": {
