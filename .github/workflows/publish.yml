@@ -1,16 +1,30 @@
+name: Deploy to NPM
+
 on:
   push:
     branches: [master]
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: npm install
-      - run: npm run build
-      - uses: JS-DevTools/npm-publish@v1
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
