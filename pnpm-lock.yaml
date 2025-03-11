@@ -13,7 +13,7 @@ importers:
         version: 7.25.2
       '@babel/runtime-corejs2':
         specifier: ^7.0.0
-        version: 7.25.6
+        version: 7.26.10
       '@wordpress/babel-preset-default':
         specifier: ^2.1.0
         version: 2.1.0(@babel/core@7.25.2)
@@ -22,19 +22,19 @@ importers:
         version: 9.8.8
       babel-loader:
         specifier: ^8.0.0
-        version: 8.3.0(@babel/core@7.25.2)(webpack@4.47.0(webpack-cli@3.3.12))
+        version: 8.3.0(@babel/core@7.25.2)(webpack@4.47.0)
       cross-env:
         specifier: ^5.2.0
         version: 5.2.1
       css-loader:
         specifier: ^1.0.0
-        version: 1.0.1(webpack@4.47.0(webpack-cli@3.3.12))
+        version: 1.0.1(webpack@4.47.0)
       extract-loader:
         specifier: ^2.0.1
         version: 2.0.1
       file-loader:
         specifier: ^2.0.0
-        version: 2.0.0(webpack@4.47.0(webpack-cli@3.3.12))
+        version: 2.0.0(webpack@4.47.0)
       postcss-cli:
         specifier: ^6.0.0
         version: 6.1.3
@@ -46,7 +46,7 @@ importers:
         version: 1.78.0
       sass-loader:
         specifier: ^7.3.1
-        version: 7.3.1(webpack@4.47.0(webpack-cli@3.3.12))
+        version: 7.3.1(webpack@4.47.0)
       webpack:
         specifier: ^4.41.6
         version: 4.47.0(webpack-cli@3.3.12)
@@ -652,8 +652,8 @@ packages:
   '@babel/regjsgen@0.8.0':
     resolution: {integrity: sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==}
 
-  '@babel/runtime-corejs2@7.25.6':
-    resolution: {integrity: sha512-24uCmOJPrsnS7HtRamCibYabHRV0bscPJNFFcyKgj7FqUA0V5XcbZUmz9PVNDW4L+euMsZtCIetU1LxTmUaIlA==}
+  '@babel/runtime-corejs2@7.26.10':
+    resolution: {integrity: sha512-JfoPiD7f/vvd/PaOfu5cr9CyzwDMPg4T0nX3MQr6IgTq49DhjvUcmjmjA7j6+xih1Evq+QKZnge1SoIlYozv/Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.25.6':
@@ -3477,7 +3477,7 @@ snapshots:
 
   '@babel/regjsgen@0.8.0': {}
 
-  '@babel/runtime-corejs2@7.25.6':
+  '@babel/runtime-corejs2@7.26.10':
     dependencies:
       core-js: 2.6.12
       regenerator-runtime: 0.14.1
@@ -3758,7 +3758,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.25.2
 
-  babel-loader@8.3.0(@babel/core@7.25.2)(webpack@4.47.0(webpack-cli@3.3.12)):
+  babel-loader@8.3.0(@babel/core@7.25.2)(webpack@4.47.0):
     dependencies:
       '@babel/core': 7.25.2
       find-cache-dir: 3.3.2
@@ -4151,7 +4151,7 @@ snapshots:
       randombytes: 2.1.0
       randomfill: 1.0.4
 
-  css-loader@1.0.1(webpack@4.47.0(webpack-cli@3.3.12)):
+  css-loader@1.0.1(webpack@4.47.0):
     dependencies:
       babel-code-frame: 6.26.0
       css-selector-tokenizer: 0.7.3
@@ -4382,7 +4382,7 @@ snapshots:
 
   figgy-pudding@3.5.2: {}
 
-  file-loader@2.0.0(webpack@4.47.0(webpack-cli@3.3.12)):
+  file-loader@2.0.0(webpack@4.47.0):
     dependencies:
       loader-utils: 1.4.2
       schema-utils: 1.0.0
@@ -5390,7 +5390,7 @@ snapshots:
     dependencies:
       ret: 0.1.15
 
-  sass-loader@7.3.1(webpack@4.47.0(webpack-cli@3.3.12)):
+  sass-loader@7.3.1(webpack@4.47.0):
     dependencies:
       clone-deep: 4.0.1
       loader-utils: 1.4.2
@@ -5605,7 +5605,7 @@ snapshots:
 
   tapable@1.1.3: {}
 
-  terser-webpack-plugin@1.4.6(webpack@4.47.0(webpack-cli@3.3.12)):
+  terser-webpack-plugin@1.4.6(webpack@4.47.0):
     dependencies:
       cacache: 12.0.4
       find-cache-dir: 2.1.0
@@ -5791,7 +5791,7 @@ snapshots:
       node-libs-browser: 2.2.1
       schema-utils: 1.0.0
       tapable: 1.1.3
-      terser-webpack-plugin: 1.4.6(webpack@4.47.0(webpack-cli@3.3.12))
+      terser-webpack-plugin: 1.4.6(webpack@4.47.0)
       watchpack: 1.7.5
       webpack-sources: 1.4.3
     optionalDependencies:
