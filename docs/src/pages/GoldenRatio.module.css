@@ -1,169 +1,165 @@
 .phiViz {
-	margin: 1.5rem 0 2rem;
+  margin: 1.5rem 0 2rem;
 }
 
 .phiBar {
-	display: flex;
-	height: 56px;
-	border-radius: 6px;
-	overflow: hidden;
-	border: 1px solid var(--border-bright);
+  display: flex;
+  height: 56px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border-bright);
 }
 
 .phiMajor {
-	width: 61.8%;
-	background: rgba(232, 224, 200, 0.15);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-right: 1px solid rgba(232, 224, 200, 0.4);
+  width: 61.8%;
+  background: rgba(232, 224, 200, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(232, 224, 200, 0.4);
 }
 
 .phiMinor {
-	width: 38.2%;
-	background: rgba(232, 224, 200, 0.05);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 38.2%;
+  background: rgba(232, 224, 200, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .phiLabel {
-	font-family: var(--font-mono);
-	font-size: 0.85rem;
-	color: var(--accent);
-	font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .phiFormula {
-	margin-top: 0.75rem;
-	text-align: center;
-	color: var(--text-muted);
-	font-size: 0.9rem;
+  margin-top: 0.75rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 .phiFormula code {
-	background: var(--bg-card);
-	padding: 0.25rem 0.75rem;
-	border-radius: 4px;
-	font-family: var(--font-mono);
-	color: var(--text);
+  background: var(--bg-card);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  color: var(--text);
 }
 
 /* Type scale */
 .scaleViz {
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-	margin: 1.5rem 0;
-	padding: 1.5rem;
-	background: var(--bg-card);
-	border: 1px solid var(--border);
-	border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
 .scaleRow {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	padding: 0.375rem 0;
-	border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.375rem 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .scaleRow:last-child {
-	border-bottom: none;
+  border-bottom: none;
 }
 
 .scaleMeta {
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-	min-width: 240px;
-	flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 240px;
+  flex-shrink: 0;
 }
 
 .scaleStep {
-	font-family: var(--font-mono);
-	font-size: 0.75rem;
-	color: var(--accent);
-	background: rgba(232, 224, 200, 0.08);
-	padding: 0.125rem 0.375rem;
-	border-radius: 3px;
-	min-width: 56px;
-	display: inline-block;
-	text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: rgba(232, 224, 200, 0.08);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  min-width: 56px;
+  display: inline-block;
+  text-align: center;
 }
 
 .scaleLabel {
-	font-size: 0.75rem;
-	color: var(--text-dim);
-	min-width: 80px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  min-width: 80px;
 }
 
 .scaleValues {
-	font-family: var(--font-mono);
-	font-size: 0.7rem;
-	color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
 }
 
 .scaleSample {
-	line-height: 1;
-	color: var(--text);
-	font-family: var(--font-sans);
-	font-weight: 500;
-	white-space: nowrap;
-	overflow: hidden;
+  line-height: 1;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* Spacing scale */
 .spacingViz {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	margin: 1.5rem 0;
-	padding: 1.5rem;
-	background: var(--bg-card);
-	border: 1px solid var(--border);
-	border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
 .spacingRow {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .spacingName {
-	font-family: var(--font-mono);
-	font-size: 0.7rem;
-	color: var(--accent);
-	min-width: 200px;
-	flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  min-width: 200px;
+  flex-shrink: 0;
 }
 
 .spacingBar {
-	flex: 1;
-	height: 12px;
-	background: var(--bg-surface);
-	border-radius: 3px;
-	overflow: hidden;
+  flex: 1;
+  height: 12px;
+  background: var(--bg-surface);
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .spacingFill {
-	height: 100%;
-	background: linear-gradient(
-		90deg,
-		var(--accent) 0%,
-		rgba(232, 224, 200, 0.4) 100%
-	);
-	border-radius: 3px;
-	min-width: 4px;
-	transition: width 0.3s ease;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(232, 224, 200, 0.4) 100%);
+  border-radius: 3px;
+  min-width: 4px;
+  transition: width 0.3s ease;
 }
 
 .spacingVal {
-	font-family: var(--font-mono);
-	font-size: 0.7rem;
-	color: var(--text-muted);
-	min-width: 120px;
-	text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  min-width: 120px;
+  text-align: right;
 }

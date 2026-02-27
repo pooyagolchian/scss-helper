@@ -6,97 +6,97 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-	/* Noir palette */
-	--bg: #080808;
-	--bg-surface: #101010;
-	--bg-elevated: #161616;
-	--bg-card: #1a1a1a;
-	--border: #242424;
-	--border-bright: #333333;
+  /* Noir palette */
+  --bg: #080808;
+  --bg-surface: #101010;
+  --bg-elevated: #161616;
+  --bg-card: #1a1a1a;
+  --border: #242424;
+  --border-bright: #333333;
 
-	/* Typography */
-	--text: #f2f2f0;
-	--text-muted: #666;
-	--text-dim: #999;
-	--text-accent: #ffffff;
+  /* Typography */
+  --text: #f2f2f0;
+  --text-muted: #666;
+  --text-dim: #999;
+  --text-accent: #ffffff;
 
-	/* Accent: warm off-white / gold tint */
-	--accent: #e8e0c8;
-	--accent-glow: rgba(232, 224, 200, 0.08);
-	--accent-dim: rgba(232, 224, 200, 0.04);
+  /* Accent: warm off-white / gold tint */
+  --accent: #e8e0c8;
+  --accent-glow: rgba(232, 224, 200, 0.08);
+  --accent-dim: rgba(232, 224, 200, 0.04);
 
-	/* Golden ratio */
-	--phi: 1.618;
+  /* Golden ratio */
+  --phi: 1.618;
 
-	/* Spacing scale (φ-based) */
-	--s1: 0.236rem;
-	--s2: 0.382rem;
-	--s3: 0.618rem;
-	--s4: 1rem;
-	--s5: 1.618rem;
-	--s6: 2.618rem;
-	--s7: 4.236rem;
-	--s8: 6.854rem;
+  /* Spacing scale (φ-based) */
+  --s1: 0.236rem;
+  --s2: 0.382rem;
+  --s3: 0.618rem;
+  --s4: 1rem;
+  --s5: 1.618rem;
+  --s6: 2.618rem;
+  --s7: 4.236rem;
+  --s8: 6.854rem;
 
-	/* Typography */
-	--font-sans: "Space Grotesk", system-ui, sans-serif;
-	--font-mono: "Space Mono", "Fira Code", monospace;
+  /* Typography */
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", "Fira Code", monospace;
 
-	/* Transitions */
-	--t: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Transitions */
+  --t: 160ms cubic-bezier(0.4, 0, 0.2, 1);
 
-	/* Sidebar */
-	--sidebar-w: 260px;
+  /* Sidebar */
+  --sidebar-w: 260px;
 }
 
 html {
-	font-size: 16px;
-	scroll-behavior: smooth;
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
-	background: var(--bg);
-	color: var(--text);
-	font-family: var(--font-sans);
-	font-weight: 400;
-	line-height: 1.618;
-	-webkit-font-smoothing: antialiased;
-	overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.618;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar {
-	width: 4px;
-	height: 4px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
-	background: var(--bg);
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-	background: var(--border-bright);
-	border-radius: 2px;
+  background: var(--border-bright);
+  border-radius: 2px;
 }
 
 /* ── Selection ── */
 ::selection {
-	background: rgba(232, 224, 200, 0.2);
-	color: var(--text-accent);
+  background: rgba(232, 224, 200, 0.2);
+  color: var(--text-accent);
 }
 
 /* ── Links ── */
 a {
-	color: var(--accent);
-	text-decoration: none;
-	transition: color var(--t);
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--t);
 }
 a:hover {
-	color: var(--text-accent);
+  color: var(--text-accent);
 }
 
 /* ── Typography ── */
@@ -106,47 +106,176 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--font-sans);
-	font-weight: 700;
-	letter-spacing: -0.02em;
-	line-height: 1.2;
-	color: var(--text-accent);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-accent);
 }
 
 p {
-	color: var(--text);
-	line-height: 1.7;
+  color: var(--text);
+  line-height: 1.7;
 }
 
 code {
-	font-family: var(--font-mono);
-	font-size: 0.85em;
-	background: var(--bg-card);
-	color: var(--accent);
-	padding: 0.15em 0.45em;
-	border-radius: 3px;
-	border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-card);
+  color: var(--accent);
+  padding: 0.15em 0.45em;
+  border-radius: 3px;
+  border: 1px solid var(--border);
 }
 
 pre code {
-	background: none;
-	border: none;
-	padding: 0;
-	font-size: 0.875rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
 }
 
 hr {
-	border: none;
-	border-top: 1px solid var(--border);
-	margin: var(--s6) 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--s6) 0;
 }
 
 /* ── Utility ── */
 .sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ── Light mode (data-theme="light") ── */
+html[data-theme="light"] {
+  --bg: #f5f3ee;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ede9e2;
+  --bg-card: #e8e4dc;
+  --border: #d0ccc3;
+  --border-bright: #b8b4ab;
+  --text: #1a1918;
+  --text-muted: #6b6864;
+  --text-dim: #8c8a87;
+  --text-accent: #0d0c0b;
+  --accent: #7c6a3a;
+  --accent-glow: rgba(124, 106, 58, 0.1);
+  --accent-dim: rgba(124, 106, 58, 0.05);
+}
+
+/* ── Animation keyframes (for live previews) ── */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
 }
