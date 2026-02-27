@@ -1,0 +1,109 @@
+/* ================================================================
+   SCSS-HELPER DOCS — Noir Theme
+   Space Grotesk + Space Mono | Black / White / Film Noir
+   ================================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Noir palette */
+  --bg:           #080808;
+  --bg-surface:   #101010;
+  --bg-elevated:  #161616;
+  --bg-card:      #1a1a1a;
+  --border:       #242424;
+  --border-bright:#333333;
+
+  /* Typography */
+  --text:         #f2f2f0;
+  --text-muted:   #666;
+  --text-dim:     #999;
+  --text-accent:  #ffffff;
+
+  /* Accent: warm off-white / gold tint */
+  --accent:       #e8e0c8;
+  --accent-glow:  rgba(232,224,200,0.08);
+  --accent-dim:   rgba(232,224,200,0.04);
+
+  /* Golden ratio */
+  --phi:          1.618;
+
+  /* Spacing scale (φ-based) */
+  --s1: 0.236rem;
+  --s2: 0.382rem;
+  --s3: 0.618rem;
+  --s4: 1rem;
+  --s5: 1.618rem;
+  --s6: 2.618rem;
+  --s7: 4.236rem;
+  --s8: 6.854rem;
+
+  /* Typography */
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Fira Code', monospace;
+
+  /* Transitions */
+  --t: 160ms cubic-bezier(0.4,0,0.2,1);
+
+  /* Sidebar */
+  --sidebar-w: 260px;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.618;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }
+
+/* ── Selection ── */
+::selection { background: rgba(232,224,200,0.2); color: var(--text-accent); }
+
+/* ── Links ── */
+a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+a:hover { color: var(--text-accent); }
+
+/* ── Typography ── */
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-accent);
+}
+
+p { color: var(--text); line-height: 1.7; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-card);
+  color: var(--accent);
+  padding: 0.15em 0.45em;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+pre code { background: none; border: none; padding: 0; font-size: 0.875rem; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--s6) 0;
+}
+
+/* ── Utility ── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}

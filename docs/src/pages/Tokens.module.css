@@ -1,0 +1,65 @@
+.colorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.swatch {
+  border-radius: 8px;
+  padding: 1rem 0.75rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  min-height: 72px;
+}
+
+.swatchName {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.swatchHex {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.typeTable {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.typeRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.typeRow:last-child {
+  border-bottom: none;
+}
+
+.typeName {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  min-width: 180px;
+}
+
+.typeVal {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}

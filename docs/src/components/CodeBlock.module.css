@@ -1,0 +1,60 @@
+/* CodeBlock */
+.wrap {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: var(--s4) 0;
+  background: var(--bg-surface);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s2) var(--s4);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+
+.lang {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.copy {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+  cursor: pointer;
+  transition: all var(--t);
+}
+
+.copy:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.copied {
+  color: #6bbb8f !important;
+  border-color: #6bbb8f !important;
+}
+
+.pre {
+  padding: var(--s5);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  tab-size: 2;
+  white-space: pre;
+  color: #ccc;
+}
