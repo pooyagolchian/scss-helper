@@ -135,7 +135,9 @@ export default function CodeBlock({ code, lang = "scss", filename }) {
 		<div className={styles.wrap}>
 			<div className={styles.bar}>
 				<span className={styles.lang}>{filename || lang}</span>
-				<button					type="button"					className={`${styles.copy} ${copied ? styles.copied : ""}`}
+				<button
+					type="button"
+					className={`${styles.copy} ${copied ? styles.copied : ""}`}
 					onClick={handleCopy}
 					aria-label="Copy code"
 				>

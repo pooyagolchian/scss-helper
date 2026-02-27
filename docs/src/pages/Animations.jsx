@@ -102,7 +102,7 @@ export default function Animations() {
 							<span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>
 								{desc}
 							</span>
-						</div>
+						</button>
 					))}
 				</div>
 

@@ -23,10 +23,5 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "vite": "^8.0.0-beta.13"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "^8.0.0-beta.13"
-    }
   }
 }

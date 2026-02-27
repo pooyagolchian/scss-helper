@@ -1,0 +1,65 @@
+name: Publish to npm
+
+on:
+  # Trigger when you push a version tag: v1.0.0, v3.1.2, etc.
+  push:
+    tags:
+      - 'v*.*.*'
+  # Or manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options: [patch, minor, major]
+
+permissions:
+  contents: write   # needed to push the version commit + tag
+  id-token: write   # needed for npm provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Use a PAT so git push triggers other workflows
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node (with npm registry auth)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install root dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Manual dispatch: bump version, commit & tag, then the push triggers
+      # the tag-based path on the NEXT run. Or just use one job for both.
+      - name: Bump version (manual dispatch only)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          npm version ${{ github.event.inputs.version_bump }} -m "chore: release v%s"
+          git push --follow-tags
+
+      - name: Build SCSS → dist/
+        run: pnpm build
+
+      # Publish to npm with provenance (verifiable build origin)
+      - name: Publish to npm
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

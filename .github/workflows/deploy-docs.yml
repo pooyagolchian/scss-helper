@@ -1,0 +1,72 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches: [master, main]
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Sets permissions to allow GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: docs/pnpm-lock.yaml
+
+      - name: Install docs dependencies
+        working-directory: docs
+        run: pnpm install --frozen-lockfile
+
+      - name: Build docs
+        working-directory: docs
+        env:
+          # Matches the GitHub Pages URL: https://<user>.github.io/<repo>/
+          VITE_BASE_URL: /scss-helper/
+        run: pnpm build
+
+      # SPA fallback: copy index.html → 404.html so deep links work on GH Pages
+      - name: Create SPA 404 fallback
+        run: cp docs/dist/index.html docs/dist/404.html
+
+      # Prevent GitHub Pages Jekyll from ignoring _assets folders
+      - name: Add .nojekyll
+        run: touch docs/dist/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

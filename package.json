@@ -51,6 +51,11 @@
     "url": "https://github.com/pooyagolchian/scss-helper/issues"
   },
   "homepage": "https://github.com/pooyagolchian/scss-helper#readme",
+  "pnpm": {
+    "overrides": {
+      "vite": "^8.0.0-beta.13"
+    }
+  },
   "keywords": [
     "scss",
     "css",

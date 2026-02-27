@@ -56,8 +56,8 @@ export function PropTable({ rows }) {
 					</tr>
 				</thead>
 				<tbody>
-						{rows.map(r => (
-							<tr key={r.name}>
+					{rows.map((r) => (
+						<tr key={r.name}>
 							<td>
 								<code>{r.name}</code>
 							</td>
