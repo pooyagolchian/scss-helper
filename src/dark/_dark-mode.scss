@@ -1,0 +1,78 @@
+// =============================================================================
+// Dark Mode Utilities
+//
+// Applies dark token overrides under both:
+//   [data-theme="dark"]          — JS-controlled (document.documentElement.dataset.theme = 'dark')
+//   @media (prefers-color-scheme: dark) — OS preference
+//
+// Usage examples:
+//   .dark\:text-white  — white text in dark mode
+//   .dark\:bg-gray-900 — dark background in dark mode
+//
+// Mixin usage in your own SCSS:
+//   .card { background: white; @include dark-mode { background: #1a1a1a; } }
+// =============================================================================
+@import "../variables";
+
+// Core mixin — scope any block to dark mode contexts
+@mixin dark-mode {
+  [data-theme="dark"] & { @content; }
+
+  @media (prefers-color-scheme: dark) {
+    [data-theme]:not([data-theme="light"]) &,
+    :not([data-theme]) & { @content; }
+  }
+}
+
+// Standalone dark-mode token overrides
+// Override :root custom properties under dark context.
+// Consumers can extend this with their own dark palette.
+[data-theme="dark"] {
+  --color-primary:   #60a5fa;  // blue-400
+  --color-secondary: #9ca3af;  // gray-400
+  --color-success:   #4ade80;  // green-400
+  --color-info:      #38bdf8;  // sky-400
+  --color-warning:   #fbbf24;  // amber-400
+  --color-danger:    #f87171;  // red-400
+  --color-light:     #374151;  // gray-700
+  --color-dark:      #f9fafb;  // gray-50
+}
+
+@media (prefers-color-scheme: dark) {
+  :not([data-theme="light"]) {
+    --color-primary:   #60a5fa;
+    --color-secondary: #9ca3af;
+    --color-success:   #4ade80;
+    --color-info:      #38bdf8;
+    --color-warning:   #fbbf24;
+    --color-danger:    #f87171;
+    --color-light:     #374151;
+    --color-dark:      #f9fafb;
+  }
+}
+
+// Utility classes — .dark\:text-*, .dark\:bg-*
+// These require [data-theme="dark"] on a parent element.
+$dark-palette: (
+  "white":      #ffffff,
+  "black":      #000000,
+  "gray-50":    #f9fafb,
+  "gray-100":   #f3f4f6,
+  "gray-200":   #e5e7eb,
+  "gray-700":   #374151,
+  "gray-800":   #1f2937,
+  "gray-900":   #111827,
+  "primary":    #60a5fa,
+  "secondary":  #9ca3af,
+  "success":    #4ade80,
+  "info":       #38bdf8,
+  "warning":    #fbbf24,
+  "danger":     #f87171,
+) !default;
+
+[data-theme="dark"] {
+  @each $name, $value in $dark-palette {
+    .dark\:text-#{$name} { color: $value; }
+    .dark\:bg-#{$name}   { background-color: $value; }
+  }
+}

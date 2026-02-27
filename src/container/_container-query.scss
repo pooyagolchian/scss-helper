@@ -1,0 +1,51 @@
+// =============================================================================
+// Container Query Helpers
+//
+// Makes it easy to use CSS Container Queries (@container) for component-level
+// responsive behavior — something Tailwind utility classes cannot do natively.
+//
+// Usage:
+//   <div class="cq">
+//     <div class="c-col-6-sm">…</div>
+//   </div>
+//
+// Mixin usage:
+//   .card { @include container-bp('card', sm) { font-size: 1.25rem; } }
+//
+// Breakpoints reuse the same $breakpoints map from _variables.scss
+// =============================================================================
+@import "../variables";
+
+// Container-type utility classes
+.cq        { container-type: inline-size; }
+.cq-size   { container-type: size; }
+.cq-normal { container-type: normal; }
+
+// Named container utility  — <div class="cq" data-cq="sidebar">
+[data-cq] { container-type: inline-size; container-name: attr(data-cq); }
+
+// Mixin: wrap content in a @container rule using the $breakpoints scale
+// @param $name      — container name (or 'none' for unnamed containers)
+// @param $breakpoint — key from $breakpoints map
+@mixin container-bp($name, $breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+  @if $name == none {
+    @container (min-width: #{$size}) { @content; }
+  } @else {
+    @container #{$name} (min-width: #{$size}) { @content; }
+  }
+}
+
+// Responsive grid columns using @container (prefix: c-)
+// These work like .col-{n} from _css-grid.scss but trigger on container width.
+.cq {
+  @each $bp-name, $bp-size in $breakpoints {
+    @container (min-width: #{$bp-size}) {
+      @for $i from 1 through 12 {
+        .c-col-#{$i}-#{$bp-name} {
+          --span: #{$i};
+        }
+      }
+    }
+  }
+}

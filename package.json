@@ -1,29 +1,45 @@
 {
   "name": "scss-helper",
-  "version": "2.0.3",
-  "description": "Scss helper for frontend project",
-  "main": "index.js",
+  "version": "3.0.0",
+  "description": "A remarkable SCSS/CSS utility toolkit — fills the gaps in Tailwind CSS v3/v4 and pure-SCSS projects with design tokens, fluid typography, container queries, dark mode, and more.",
+  "main": "index.scss",
+  "exports": {
+    ".": "./index.scss",
+    "./css": "./dist/style.css",
+    "./css/grid": "./dist/only-css-grid.css",
+    "./css/tokens": "./dist/tokens.css",
+    "./plugin": "./plugin.js"
+  },
+  "files": [
+    "src/",
+    "dist/",
+    "index.scss",
+    "plugin.js",
+    "postcss.config.js"
+  ],
+  "peerDependencies": {
+    "sass": ">=1.60.0",
+    "tailwindcss": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/runtime-corejs2": "^7.0.0",
-    "@wordpress/babel-preset-default": "^2.1.0",
-    "autoprefixer": "^9.1.3",
-    "babel-loader": "^8.0.0",
-    "cross-env": "^5.2.0",
-    "css-loader": "^1.0.0",
-    "extract-loader": "^2.0.1",
-    "file-loader": "^2.0.0",
-    "postcss-cli": "^6.0.0",
-    "postcss-loader": "^3.0.0",
-    "sass": "^1.78.0",
-    "sass-loader": "^7.3.1",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.10"
+    "autoprefixer": "^10.4.21",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.85.1"
   },
   "scripts": {
-    "build:dev": "webpack",
-    "build:prod": "cross-env NODE_ENV=production webpack",
-    "watch": "webpack --watch"
+    "build": "pnpm build:tokens && pnpm build:css && pnpm build:grid",
+    "build:css": "sass src/style.scss dist/style.css --style=compressed --no-source-map --silence-deprecation=import,global-builtin,if-function && postcss dist/style.css --replace",
+    "build:grid": "sass src/only-css-grid.scss dist/only-css-grid.css --style=compressed --no-source-map --silence-deprecation=import,global-builtin && postcss dist/only-css-grid.css --replace",
+    "build:tokens": "sass src/tokens/_index.scss dist/tokens.css --style=compressed --no-source-map --silence-deprecation=import,global-builtin && postcss dist/tokens.css --replace",
+    "build:dev": "sass src/style.scss dist/style.css --style=expanded --silence-deprecation=import,global-builtin,if-function && sass src/only-css-grid.scss dist/only-css-grid.css --style=expanded --silence-deprecation=import,global-builtin && sass src/tokens/_index.scss dist/tokens.css --style=expanded --silence-deprecation=import,global-builtin",
+    "watch": "sass --watch src/style.scss:dist/style.css src/only-css-grid.scss:dist/only-css-grid.css src/tokens/_index.scss:dist/tokens.css --silence-deprecation=import,global-builtin,if-function"
   },
   "repository": {
     "type": "git",
@@ -36,10 +52,20 @@
   },
   "homepage": "https://github.com/pooyagolchian/scss-helper#readme",
   "keywords": [
-    "scss-helper",
     "scss",
     "css",
+    "utilities",
+    "helper",
+    "tailwind",
+    "tailwindcss",
+    "design-tokens",
     "css-grid",
-    "grid"
+    "flexbox",
+    "dark-mode",
+    "container-queries",
+    "fluid-typography",
+    "spacing",
+    "animations",
+    "scss-helper"
   ]
 }

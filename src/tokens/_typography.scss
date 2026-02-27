@@ -1,0 +1,36 @@
+// =============================================================================
+// Design Token Layer — Typography
+// Exposes Sass typography variables as CSS custom properties.
+// =============================================================================
+@import "../variables";
+
+:root {
+  // Font sizes
+  --font-size-sm:   #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+  --font-size-lg:   #{$font-size-lg};
+  --font-size-xl:   #{$font-size-base * 1.5};
+  --font-size-2xl:  #{$font-size-base * 1.875};
+  --font-size-3xl:  #{$font-size-base * 2.25};
+  --font-size-4xl:  #{$font-size-base * 3};
+
+  // Heading sizes
+  --font-size-h1: #{$h1-font-size};
+  --font-size-h2: #{$h2-font-size};
+  --font-size-h3: #{$h3-font-size};
+  --font-size-h4: #{$h4-font-size};
+  --font-size-h5: #{$h5-font-size};
+  --font-size-h6: #{$h6-font-size};
+
+  // Font weights
+  --font-weight-lighter: #{$font-weight-lighter};
+  --font-weight-light:   #{$font-weight-light};
+  --font-weight-normal:  #{$font-weight-normal};
+  --font-weight-bold:    #{$font-weight-bold};
+  --font-weight-bolder:  #{$font-weight-bolder};
+
+  // Line heights
+  --line-height-sm:   #{$line-height-sm};
+  --line-height-base: #{$line-height-base};
+  --line-height-lg:   #{$line-height-lg};
+}

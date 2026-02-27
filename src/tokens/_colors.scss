@@ -1,0 +1,46 @@
+// =============================================================================
+// Design Token Layer — Colors
+// Bridges Sass variables to CSS custom properties for use in any context,
+// including Tailwind v4's @theme layer.
+// =============================================================================
+@import "../variables";
+
+:root {
+  // Palette
+  --color-white:       #{$white};
+  --color-black:       #{$black};
+
+  // Gray scale
+  --color-gray-base:   #{$gray-base};
+  --color-gray-100:    #{$gray-100};
+  --color-gray-200:    #{$gray-200};
+  --color-gray-300:    #{$gray-300};
+  --color-gray-400:    #{$gray-400};
+  --color-gray-500:    #{$gray-500};
+  --color-gray-600:    #{$gray-600};
+  --color-gray-700:    #{$gray-700};
+  --color-gray-800:    #{$gray-800};
+  --color-gray-900:    #{$gray-900};
+
+  // Hue palette
+  --color-blue:        #{$blue};
+  --color-indigo:      #{$indigo};
+  --color-purple:      #{$purple};
+  --color-pink:        #{$pink};
+  --color-red:         #{$red};
+  --color-orange:      #{$orange};
+  --color-yellow:      #{$yellow};
+  --color-green:       #{$green};
+  --color-teal:        #{$teal};
+  --color-cyan:        #{$cyan};
+
+  // Semantic roles
+  --color-primary:     #{$primary};
+  --color-secondary:   #{$secondary};
+  --color-success:     #{$success};
+  --color-info:        #{$info};
+  --color-warning:     #{$warning};
+  --color-danger:      #{$danger};
+  --color-light:       #{$light};
+  --color-dark:        #{$dark};
+}

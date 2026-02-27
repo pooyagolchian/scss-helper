@@ -1,0 +1,217 @@
+// =============================================================================
+// Golden Ratio Design System
+// φ = 1.618033988749895
+//
+// The golden ratio (φ) appears throughout nature, art, and excellent design.
+// This module derives typography scales, spacing, grid proportions, and
+// layout ratios from φ — producing harmonious, visually balanced systems.
+//
+// KEY PRINCIPLE: Each step = previous × φ
+//
+// Usage examples:
+//   font-size: golden-step(0);    // base: 1rem
+//   font-size: golden-step(1);    // 1rem × φ = 1.618rem
+//   font-size: golden-step(-1);   // 1rem ÷ φ = 0.618rem
+//   width: golden-ratio-split(80%); // returns 49.44% (major portion)
+//   @include golden-columns;       // yields a 61.8% / 38.2% two-col layout
+// =============================================================================
+@import "../variables";
+
+// ---------------------------------------------------------------------------
+// Core constant
+// ---------------------------------------------------------------------------
+$phi:             1.618033988749895 !default;  // Golden Ratio
+$phi-minor:       0.618033988749895 !default;  // 1/φ = φ - 1
+$phi-sq:          2.618033988749895 !default;  // φ²
+$phi-base:        1rem              !default;  // Scale anchor
+
+// ---------------------------------------------------------------------------
+// Function: golden-step($n)
+// Returns the font/spacing size at step $n of the golden scale.
+// Positive n → larger, negative n → smaller.
+//
+// Examples:
+//   golden-step(-2) → 0.382rem
+//   golden-step(-1) → 0.618rem
+//   golden-step(0)  → 1rem
+//   golden-step(1)  → 1.618rem
+//   golden-step(2)  → 2.618rem
+//   golden-step(3)  → 4.236rem
+//   golden-step(4)  → 6.854rem
+// ---------------------------------------------------------------------------
+@function golden-step($n, $base: $phi-base) {
+  $result: $base;
+  @if $n > 0 {
+    @for $i from 1 through $n {
+      $result: $result * $phi;
+    }
+  } @else if $n < 0 {
+    @for $i from $n through -1 {
+      $result: $result / $phi;
+    }
+  }
+  @return $result;
+}
+
+// ---------------------------------------------------------------------------
+// Function: golden-ratio-split($width)
+// Given a total width, returns the major (larger) portion.
+// Major = total × φ⁻¹ × φ... = total × (φ / φ²) = total × (1/φ)... 
+// Actually: major = total × (φ / (1 + φ)) = total × (φ / φ²) = total / φ
+// Minor = total - major = total × (1 / φ²)
+//
+// Example: golden-ratio-split(100%) → 61.803%
+// ---------------------------------------------------------------------------
+@function golden-ratio-split($width) {
+  @return $width * $phi-minor * $phi;  // = width × (φ-1) × φ / 1 = width * 0.61803...
+}
+
+@function golden-ratio-minor($width) {
+  @return $width * ($phi-minor * $phi-minor);  // width × 0.38197
+}
+
+// ---------------------------------------------------------------------------
+// Typography: Golden Scale
+// Derives a harmonious type scale from $phi-base.
+//
+// Class names: .gs-text-{-2|-1|0|1|2|3|4|5}
+// ---------------------------------------------------------------------------
+$golden-type-scale: (
+  "-2": golden-step(-2),  // 0.382rem ≈ 6px — fine print
+  "-1": golden-step(-1),  // 0.618rem ≈ 10px — caption
+  "0":  golden-step(0),   // 1rem    ≈ 16px — body (base)
+  "1":  golden-step(1),   // 1.618rem ≈ 26px — h5/lead
+  "2":  golden-step(2),   // 2.618rem ≈ 42px — h3
+  "3":  golden-step(3),   // 4.236rem ≈ 68px — h1
+  "4":  golden-step(4),   // 6.854rem ≈ 109px — display
+  "5":  golden-step(5),   // 11.09rem ≈ 177px — hero
+);
+
+@each $key, $size in $golden-type-scale {
+  .gs-text-#{$key} {
+    font-size: $size;
+  }
+}
+
+// Golden ratio line-height: √φ ≈ 1.272 for body, φ/φ-minor for headings
+.gs-leading-body    { line-height: 1.618; }       // φ itself
+.gs-leading-tight   { line-height: 1.272; }       // √φ
+.gs-leading-compact { line-height: 1.0; }
+
+// ---------------------------------------------------------------------------
+// Spacing: Golden Spacing Scale
+// CSS custom properties AND utility classes
+// ---------------------------------------------------------------------------
+$golden-spacing-scale: (
+  "1": golden-step(-3),   // 0.236rem
+  "2": golden-step(-2),   // 0.382rem
+  "3": golden-step(-1),   // 0.618rem
+  "4": golden-step(0),    // 1rem
+  "5": golden-step(1),    // 1.618rem
+  "6": golden-step(2),    // 2.618rem
+  "7": golden-step(3),    // 4.236rem
+  "8": golden-step(4),    // 6.854rem
+  "9": golden-step(5),    // 11.09rem
+);
+
+:root {
+  @each $key, $size in $golden-spacing-scale {
+    --gs-space-#{$key}: #{$size};
+  }
+  // Key ratios as custom props for use in arbitrary CSS
+  --phi:       #{$phi};
+  --phi-minor: #{$phi-minor};
+}
+
+// Margin golden helpers
+@each $key, $size in $golden-spacing-scale {
+  .gs-m-#{$key}  { margin:         $size; }
+  .gs-mt-#{$key} { margin-top:     $size; }
+  .gs-mb-#{$key} { margin-bottom:  $size; }
+  .gs-ml-#{$key} { margin-left:    $size; }
+  .gs-mr-#{$key} { margin-right:   $size; }
+  .gs-p-#{$key}  { padding:        $size; }
+  .gs-pt-#{$key} { padding-top:    $size; }
+  .gs-pb-#{$key} { padding-bottom: $size; }
+  .gs-pl-#{$key} { padding-left:   $size; }
+  .gs-pr-#{$key} { padding-right:  $size; }
+  .gs-gap-#{$key}{ gap:            $size; }
+}
+
+// ---------------------------------------------------------------------------
+// Grid: Golden Ratio Two-Column Layouts
+// Major col = 61.8%, Minor col = 38.2%
+// ---------------------------------------------------------------------------
+
+// CSS Grid based golden layouts
+.gs-grid-golden {
+  display: grid;
+  grid-template-columns: #{$phi-minor * 100 * $phi}% #{$phi-minor * $phi-minor * 100}%;
+  // ≈ 61.8% / 38.2%
+}
+
+.gs-grid-golden-reverse {
+  display: grid;
+  grid-template-columns: #{$phi-minor * $phi-minor * 100}% #{$phi-minor * 100 * $phi}%;
+  // ≈ 38.2% / 61.8%
+}
+
+// Three-column golden spiral grid: 23.6% / 38.2% / 38.2%
+.gs-grid-golden-3 {
+  display: grid;
+  grid-template-columns:
+    #{$phi-minor * $phi-minor * $phi-minor * 100}%
+    #{$phi-minor * $phi-minor * 100}%
+    #{$phi-minor * $phi-minor * 100}%;
+}
+
+// Flexbox golden pair (use with two direct children)
+.gs-flex-golden {
+  display: flex;
+  gap: golden-step(0);
+
+  > :first-child { flex: #{$phi} 1 0%; }
+  > :last-child  { flex: 1 1 0%; }
+}
+
+// ---------------------------------------------------------------------------
+// Mixin: golden-columns
+// Applies golden ratio split to any two selectors inside a grid parent.
+// @include golden-columns;  → major 61.8%, minor 38.2%
+// ---------------------------------------------------------------------------
+@mixin golden-columns($gap: golden-step(0)) {
+  display: grid;
+  grid-template-columns: #{$phi-minor * 100 * $phi}% 1fr;
+  gap: $gap;
+}
+
+// ---------------------------------------------------------------------------
+// Mixin: golden-scale-type
+// Sets font-size and line-height at the given golden scale step.
+// @include golden-scale-type(2);  → 2.618rem / line-height φ
+// ---------------------------------------------------------------------------
+@mixin golden-scale-type($step: 0, $leading: $phi) {
+  font-size: golden-step($step);
+  line-height: $leading;
+}
+
+// ---------------------------------------------------------------------------
+// Container aspect ratios based on φ
+// Golden rectangle: width/height = φ
+// ---------------------------------------------------------------------------
+.gs-ratio-golden {
+  aspect-ratio: #{$phi} / 1;      // 1.618:1
+}
+.gs-ratio-golden-portrait {
+  aspect-ratio: 1 / #{$phi};      // 1:1.618
+}
+.gs-ratio-golden-landscape {
+  aspect-ratio: #{$phi-sq} / 1;   // 2.618:1 (φ²)
+}
+
+// ---------------------------------------------------------------------------
+// Border radius: golden-derived softness
+// ---------------------------------------------------------------------------
+.gs-rounded-phi   { border-radius: golden-step(-1); }  // 0.618rem
+.gs-rounded-phi-sm{ border-radius: golden-step(-2); }  // 0.382rem
+.gs-rounded-phi-lg{ border-radius: golden-step(0);  }  // 1rem

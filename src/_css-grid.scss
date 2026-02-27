@@ -92,6 +92,30 @@
   --grid-gap: var(--space-xxxxl, 13.75rem);
 }
 
+// Numeric gap utilities using the spacing scale (0.25rem steps, matches Tailwind)
+// .gap-0 .gap-1 .gap-2 ... .gap-16
+$gap-scale: (
+  0:  0,
+  1:  0.25rem,
+  2:  0.5rem,
+  3:  0.75rem,
+  4:  1rem,
+  5:  1.25rem,
+  6:  1.5rem,
+  7:  1.75rem,
+  8:  2rem,
+  10: 2.5rem,
+  12: 3rem,
+  14: 3.5rem,
+  16: 4rem,
+);
+
+@each $key, $value in $gap-scale {
+  .gap-#{$key}   { gap: $value; --grid-gap: #{$value}; }
+  .gap-x-#{$key} { column-gap: $value; }
+  .gap-y-#{$key} { row-gap: $value; }
+}
+
 @for $i from 1 through $grid-columns {
   .col-#{$i} {
     --span: #{$i};
@@ -233,57 +257,57 @@
 }
 
 @include breakpoint(md) {
-  .grid-auto-xs-meduim {
+  .grid-auto-xs-medium {
     --col-min-width: 8rem;
   }
 
-  .grid-auto-sm-meduim {
+  .grid-auto-sm-medium {
     --col-min-width: 10rem;
   }
 
-  .grid-auto-md-meduim {
+  .grid-auto-md-medium {
     --col-min-width: 15rem;
   }
 
-  .grid-auto-lg-meduim {
+  .grid-auto-lg-medium {
     --col-min-width: 20rem;
   }
 
-  .grid-auto-xl-meduim {
+  .grid-auto-xl-medium {
     --col-min-width: 25rem;
   }
 
-  .grid-auto-cols-meduim {
+  .grid-auto-cols-medium {
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   }
 
   @for $i from 1 through $grid-columns {
-    .col-#{$i}-meduim {
+    .col-#{$i}-medium {
       --span: #{$i};
     }
 
-    .col-start-#{$i}-meduim {
+    .col-start-#{$i}-medium {
       grid-column-start: #{$i};
     }
 
-    .col-end-#{$i + 1}-meduim {
+    .col-end-#{$i + 1}-medium {
       grid-column-end: #{$i + 1};
     }
   }
 
-  .col-start-meduim {
+  .col-start-medium {
     grid-column-start: 1;
   }
 
-  .col-end-meduim {
+  .col-end-medium {
     grid-column-end: -1;
   }
 
-  .col-start-auto-meduim {
+  .col-start-auto-medium {
     grid-column-start: auto;
   }
 
-  .col-end-auto-meduim {
+  .col-end-auto-medium {
     grid-column-end: auto;
   }
 }

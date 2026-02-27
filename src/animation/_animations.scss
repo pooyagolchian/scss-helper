@@ -1,0 +1,128 @@
+// =============================================================================
+// Animation Utilities
+//
+// Pre-built keyframe animations with a prefers-reduced-motion guard.
+// Duration is controlled via --duration CSS custom property (set in _transitions.scss).
+//
+// Usage:
+//   <div class="animate-fade-in">…</div>
+//   <div class="animate-spin" style="--duration: 1s">…</div>
+//
+// All animations are disabled when the user prefers reduced motion.
+// =============================================================================
+
+// --- Keyframe definitions ---
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(1rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-1rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(1rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(-1rem); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+
+// --- Utility classes ---
+// Uses --duration from _transitions.scss (:root)
+
+.animate-fade-in   { animation: fade-in   var(--duration, 200ms) var(--easing, ease) both; }
+.animate-fade-out  { animation: fade-out  var(--duration, 200ms) var(--easing, ease) both; }
+.animate-slide-up  { animation: slide-up  var(--duration, 300ms) var(--easing, ease) both; }
+.animate-slide-down{ animation: slide-down var(--duration, 300ms) var(--easing, ease) both; }
+.animate-slide-left{ animation: slide-left var(--duration, 300ms) var(--easing, ease) both; }
+.animate-slide-right { animation: slide-right var(--duration, 300ms) var(--easing, ease) both; }
+.animate-scale-in  { animation: scale-in  var(--duration, 200ms) var(--easing, ease) both; }
+.animate-spin      { animation: spin      var(--duration, 1000ms) linear infinite; }
+.animate-ping      { animation: ping      var(--duration, 1000ms) cubic-bezier(0, 0, 0.2, 1) infinite; }
+.animate-pulse     { animation: pulse     var(--duration, 2000ms) cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-bounce    { animation: bounce    var(--duration, 1000ms) infinite; }
+.animate-wiggle    { animation: wiggle    var(--duration, 200ms) var(--easing, ease) infinite; }
+.animate-none      { animation: none; }
+
+// Animation delay helpers
+.delay-75   { animation-delay:  75ms; }
+.delay-100  { animation-delay: 100ms; }
+.delay-150  { animation-delay: 150ms; }
+.delay-200  { animation-delay: 200ms; }
+.delay-300  { animation-delay: 300ms; }
+.delay-500  { animation-delay: 500ms; }
+.delay-700  { animation-delay: 700ms; }
+.delay-1000 { animation-delay:   1s; }
+
+// Iteration count helpers
+.animate-once     { animation-iteration-count: 1; }
+.animate-twice    { animation-iteration-count: 2; }
+.animate-infinite { animation-iteration-count: infinite; }
+
+// Fill mode
+.animate-fill-both     { animation-fill-mode: both; }
+.animate-fill-forwards { animation-fill-mode: forwards; }
+
+// --- Accessibility guard ---
+// Disables all animations/transitions for users who prefer reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+}

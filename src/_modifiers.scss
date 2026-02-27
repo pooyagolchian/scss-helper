@@ -4,7 +4,9 @@
 .bg {
   @include modifiers($colors, "background-color", $separator: "-");
 }
-.fs {
+// Named font-size utilities: .font-size-small, .font-size-large, etc.
+// (cf. .fs-{n} in _font-helper.scss for raw px sizes)
+.font-size {
   @include modifiers($font-sizes, "font-size", "-");
 }
 .font-weight {

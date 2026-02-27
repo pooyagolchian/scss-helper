@@ -1,10 +1,10 @@
-@mixin border-stroke($value) {
+@mixin border-stroke($value, $color: $black) {
   @if $value==light {
-    border: $border-width-light solid $black;
+    border: $border-width-light solid $color;
   } @else if $value==medium {
-    border: $border-width-medium solid $black;
+    border: $border-width-medium solid $color;
   } @else if $value==heavy {
-    border: $border-width-heavy solid $black;
+    border: $border-width-heavy solid $color;
   } @else {
     border: none;
   }
