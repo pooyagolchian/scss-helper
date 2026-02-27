@@ -47,7 +47,7 @@ $phi-base:        1rem              !default;  // Scale anchor
     }
   } @else if $n < 0 {
     @for $i from $n through -1 {
-      $result: $result / $phi;
+      $result: $result * $phi-minor;  // multiply by 1/φ instead of dividing
     }
   }
   @return $result;
@@ -146,23 +146,18 @@ $golden-spacing-scale: (
 // CSS Grid based golden layouts
 .gs-grid-golden {
   display: grid;
-  grid-template-columns: #{$phi-minor * 100 * $phi}% #{$phi-minor * $phi-minor * 100}%;
-  // ≈ 61.8% / 38.2%
+  grid-template-columns: 61.8034% 38.1966%;  // φ-minor×100 / φ-minor²×100
 }
 
 .gs-grid-golden-reverse {
   display: grid;
-  grid-template-columns: #{$phi-minor * $phi-minor * 100}% #{$phi-minor * 100 * $phi}%;
-  // ≈ 38.2% / 61.8%
+  grid-template-columns: 38.1966% 61.8034%;  // reversed
 }
 
 // Three-column golden spiral grid: 23.6% / 38.2% / 38.2%
 .gs-grid-golden-3 {
   display: grid;
-  grid-template-columns:
-    #{$phi-minor * $phi-minor * $phi-minor * 100}%
-    #{$phi-minor * $phi-minor * 100}%
-    #{$phi-minor * $phi-minor * 100}%;
+  grid-template-columns: 23.6068% 38.1966% 38.1966%;  // φ-minor³×100 /  φ-minor²×100 / φ-minor²×100
 }
 
 // Flexbox golden pair (use with two direct children)
@@ -181,7 +176,7 @@ $golden-spacing-scale: (
 // ---------------------------------------------------------------------------
 @mixin golden-columns($gap: golden-step(0)) {
   display: grid;
-  grid-template-columns: #{$phi-minor * 100 * $phi}% 1fr;
+  grid-template-columns: 61.8034% 1fr;  // major golden portion
   gap: $gap;
 }
 
