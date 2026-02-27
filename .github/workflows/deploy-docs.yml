@@ -47,7 +47,7 @@ jobs:
 
       - name: Install docs dependencies
         working-directory: docs
-        run: pnpm install --frozen-lockfile --ignore-workspace
+        run: pnpm install --ignore-workspace
 
       - name: Build docs
         working-directory: docs
