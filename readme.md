@@ -1,662 +1,294 @@
-# SCSS Helper Documentation
+# scss-helper
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Installation](#installation)
-    - [Install from NPM](#install-package-on-npm-repo)
-    - [Install from GitHub](#install-github-repo)
-- [Compile and Watch](#compile-and-watch)
-    - [Compile Production](#compile-production)
-    - [Compile Development](#compile-development)
-    - [Watch for Changes](#watch)
-- [Flexbox Grid System](#flexbox-grid-system)
-    - [Grid Container](#grid-container)
-    - [Grid Column](#grid-column)
-    - [Dynamic Columns](#dynamic-columns)
-    - [Responsive Design](#responsive-design)
-- [CSS Grid System](#css-grid-system)
-    - [Basic Grid Layout](#basic-grid-layout)
-    - [Auto-Sized Grid Layout](#auto-sized-grid-layout)
-    - [Fixed Number of Columns](#fixed-number-of-columns)
-    - [Grid Gaps](#grid-gaps)
-    - [Responsive Design](#responsive-grid-design)
-- [Font Size Generator](#font-size-generator)
-- [Margin Helper](#margin-helper)
-- [Box Shadow Mixin](#box-shadow-mixin)
-- [Clearfix Mixin](#clearfix-mixin)
-- [Modifiers Mixin](#modifiers-mixin)
-- [Border Radius Mixin](#border-radius-mixin)
-- [Padding Mixin](#padding-mixin)
+> A remarkable SCSS/CSS utility toolkit — fills the gaps in Tailwind CSS v3/v4 and pure-SCSS projects with design tokens, fluid typography, container queries, dark mode, golden ratio layouts, animations, and more.
 
----
+[![npm version](https://img.shields.io/npm/v/scss-helper.svg)](https://www.npmjs.com/package/scss-helper)
+[![npm downloads](https://img.shields.io/npm/dm/scss-helper.svg)](https://www.npmjs.com/package/scss-helper)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Introduction
-
-A package for SCSS projects designed to generate useful styles with minimal effort.
-
-### Features
-- Font size generator
-- Simple grid (Flexbox grid similar to Bootstrap)
-- CSS grid support
-- Visual design utilities
-- Color helpers
-- Semantic color naming
-- Reusable mixins and functionalities
-- Lightweight (32.8 KiB compiled CSS)
+📖 **[Full Documentation →](https://pooya.blog/scss-helper/)**
 
 ---
 
 ## Installation
 
-### Install Package on NPM Repo
 ```bash
-npm install scss-helper --save-dev
+npm install scss-helper
+# or
+pnpm add scss-helper
+# or
+yarn add scss-helper
 ```
-or
+
+---
+
+## Quick Start
+
+### Import everything
+```scss
+@import 'scss-helper/src/style';
+```
+
+### Import only the CSS grid
+```scss
+@import 'scss-helper/src/only-css-grid';
+```
+
+### Use pre-built CSS
+```html
+<!-- Full build (~75KB) -->
+<link rel="stylesheet" href="node_modules/scss-helper/dist/style.css">
+
+<!-- Grid only (~12KB) -->
+<link rel="stylesheet" href="node_modules/scss-helper/dist/only-css-grid.css">
+
+<!-- Design tokens only (~2KB) -->
+<link rel="stylesheet" href="node_modules/scss-helper/dist/tokens.css">
+```
+
+---
+
+## What's Included
+
+### Design Tokens
+CSS custom properties for colors, spacing, and typography.
+
+```css
+--color-white, --color-black, --color-gray-*
+--space-xs, --space-sm, --space-md, --space-lg, --space-xl
+--font-size-sm, --font-size-md, --font-size-lg
+```
+
+---
+
+### CSS Grid System
+
+```html
+<!-- Basic grid -->
+<div class="gs-grid">
+  <div class="gs-col-6">Half</div>
+  <div class="gs-col-6">Half</div>
+</div>
+
+<!-- Auto-fit responsive grid -->
+<div class="gs-grid-auto-md">
+  <div>Card</div>
+  <div>Card</div>
+</div>
+
+<!-- Custom columns + gap -->
+<div class="gs-grid gs-grid-gap-md" style="--grid-cols: 3">
+  <div>Item</div>
+</div>
+```
+
+**Gap classes:** `gs-grid-gap-xs` `gs-grid-gap-sm` `gs-grid-gap-md` `gs-grid-gap-lg` `gs-grid-gap-xl`  
+**Auto-fit classes:** `gs-grid-auto-xs` → `gs-grid-auto-xl`  
+**Column span classes:** `gs-col-1` → `gs-col-12`
+
+---
+
+### Golden Ratio Layouts
+
+Layouts based on φ (1.618) for naturally proportioned designs.
+
+```html
+<!-- 61.8% / 38.2% split -->
+<div class="gs-grid-golden">
+  <main>Main content</main>
+  <aside>Sidebar</aside>
+</div>
+
+<!-- Reversed -->
+<div class="gs-grid-golden-reverse">
+  <aside>Sidebar</aside>
+  <main>Main content</main>
+</div>
+
+<!-- Three-column golden split -->
+<div class="gs-grid-golden-3">
+  <div>23.6%</div>
+  <div>38.2%</div>
+  <div>38.2%</div>
+</div>
+```
+
+---
+
+### Fluid Typography
+
+Type that scales smoothly between viewport sizes using `clamp()`.
+
+```html
+<h1 class="text-fluid-xl">Scales 1.75rem → 2.5rem</h1>
+<p class="text-fluid-md">Scales 1rem → 1.25rem</p>
+```
+
+| Class | Min | Max |
+|---|---|---|
+| `text-fluid-xs` | 0.75rem | 0.875rem |
+| `text-fluid-sm` | 0.875rem | 1rem |
+| `text-fluid-md` | 1rem | 1.25rem |
+| `text-fluid-lg` | 1.25rem | 1.75rem |
+| `text-fluid-xl` | 1.75rem | 2.5rem |
+| `text-fluid-2xl` | 2rem | 3.5rem |
+| `text-fluid-3xl` | 2.5rem | 4.5rem |
+
+---
+
+### Dark Mode
+
+Dual-strategy: JS-toggled via `data-theme` and automatic via `prefers-color-scheme`.
+
+```scss
+@import 'scss-helper/src/dark/_dark-mode';
+
+.card {
+  background: #fff;
+
+  @include dark-mode {
+    background: #1a1a1a;
+  }
+}
+```
+
+```js
+// Toggle dark mode
+document.documentElement.setAttribute('data-theme', 'dark')
+```
+
+```html
+<!-- Utility classes -->
+<p class="dark:text-white">White in dark mode</p>
+<div class="dark:bg-dark">Dark background</div>
+```
+
+---
+
+### Container Queries
+
+Element-level responsive design.
+
+```html
+<div class="cq-container">
+  <p class="cq-sm:text-sm cq-lg:text-xl">
+    Responds to container width, not the viewport
+  </p>
+</div>
+```
+
+Breakpoints: `cq-xs` (320px) · `cq-sm` (480px) · `cq-md` (640px) · `cq-lg` (768px) · `cq-xl` (1024px)
+
+---
+
+### Animations
+
+12 keyframe animations with a `prefers-reduced-motion` guard.
+
+```html
+<div class="animate-fade-in">Fades in</div>
+<div class="animate-slide-up animate-delay-200">Slides up (delayed)</div>
+<div class="animate-spin">Spinning</div>
+<div class="animate-pulse">Pulsing skeleton</div>
+```
+
+**Classes:** `animate-fade-in` · `animate-fade-out` · `animate-slide-up` · `animate-slide-down` · `animate-slide-left` · `animate-slide-right` · `animate-spin` · `animate-ping` · `animate-pulse` · `animate-bounce` · `animate-scale-in` · `animate-wiggle`
+
+**Delays:** `animate-delay-75` · `animate-delay-100` · `animate-delay-200` · `animate-delay-300` · `animate-delay-500`
+
+---
+
+### Mixins
+
+```scss
+@import 'scss-helper/src/_mixin';
+
+// Dark mode
+@include dark-mode { background: #1a1a1a; }
+
+// Transition
+@include transition(background-color, 150ms, ease-out);
+
+// Box shadow
+@include box-shadow(0, 4px, 16px, rgba(0, 0, 0, 0.12));
+
+// Border radius
+@include border-radius(8px);
+
+// Clearfix
+@include clearfix;
+
+// Modifiers
+@include modifiers((primary: blue, danger: red), color);
+```
+
+---
+
+### Spacing Helpers
+
+```html
+<div class="mt-4">margin-top: 1rem</div>
+<div class="px-6">padding-inline: 1.5rem</div>
+```
+
+**Margin:** `m-*` `mt-*` `mb-*` `ml-*` `mr-*` `mx-*` `my-*`  
+**Padding:** `p-*` `pt-*` `pb-*` `pl-*` `pr-*` `px-*` `py-*`  
+**Scale:** 0 1 2 3 4 5 6 8 10 12 16 20 24 32
+
+---
+
+### Tailwind CSS Plugin
+
+```js
+// tailwind.config.js
+const scssHelper = require('scss-helper/plugin')
+
+module.exports = {
+  plugins: [scssHelper],
+}
+```
+
+Adds golden ratio, fluid type, and container query utilities as Tailwind classes.
+
+---
+
+## Build Outputs
+
+| File | Description | Size |
+|---|---|---|
+| `dist/style.css` | Full build — all utilities | ~75KB |
+| `dist/only-css-grid.css` | CSS grid only | ~12KB |
+| `dist/tokens.css` | Design tokens only | ~2KB |
+
+---
+
+## Development
+
 ```bash
-yarn add scss-helper --save-dev
-```
-
-### Install GitHub Repo
-```bash
-npm install
-```
-
----
-
-## Compile and Watch
-
-We use `sass` to compile and watch SCSS files.
-
-### Compile Production
-```bash
-npm run build:prod
-```
-
-### Compile Development
-```bash
-npm run build:dev
-```
-
-### Watch for Changes
-```bash
-npm run watch
+git clone https://github.com/pooyagolchian/scss-helper.git
+cd scss-helper
+pnpm install
+pnpm build        # build all outputs
+cd docs && pnpm dev  # run docs locally at localhost:5173
 ```
 
 ---
 
-## Flexbox Grid System
+## Changelog
 
-The Flexbox Grid system mimics the behavior of Bootstrap's grid using Flexbox. It is based on a 24-column layout and dynamically generates column classes.
+### v3.0.0
+- Design tokens, fluid typography, container queries, dark mode mixin
+- Golden ratio grid layouts (φ = 1.618)
+- 12 keyframe animations + transition utilities
+- Tailwind CSS plugin
+- Pre-built CSS: `style.css`, `only-css-grid.css`, `tokens.css`
+- Full docs at [pooya.blog/scss-helper](https://pooya.blog/scss-helper/)
 
-### Grid Container
-The `.sg-row` class creates a flex container for grid columns.
-
-#### SCSS
-```scss
-.sg-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
-```
-
-#### HTML Example
-```html
-<div class="sg-row">
-  <div class="sg-col-6">Column 6</div>
-  <div class="sg-col-6">Column 6</div>
-</div>
-```
-
-### Grid Column
-The `.sg-col` class adds padding and makes the columns flexible.
-
-#### SCSS
-```scss
-.sg-col {
-  padding-right: 15px;
-  padding-left: 15px;
-  flex-grow: 1;
-}
-```
-
-#### HTML Example
-```html
-<div class="sg-row">
-  <div class="sg-col">Flexible Column</div>
-  <div class="sg-col">Flexible Column</div>
-</div>
-```
-
-### Dynamic Columns
-Classes from `.sg-col-1` to `.sg-col-24` control the width of each column based on a 24-column layout.
-
-#### SCSS
-```scss
-@for $i from 1 through 24 {
-  .sg-col-#{$i} {
-    width: math.div(100%, 24) * $i;
-    flex: 0 0 math.div(100%, 24) * $i;
-    max-width: math.div(100%, 24) * $i;
-  }
-}
-```
-
-#### HTML Example
-```html
-<div class="sg-row">
-  <div class="sg-col-12">Half Width (12/24)</div>
-  <div class="sg-col-6">Quarter Width (6/24)</div>
-  <div class="sg-col-6">Quarter Width (6/24)</div>
-</div>
-```
-
-### Responsive Design
-On screens smaller than 768px, columns stack vertically.
-
-#### SCSS
-```scss
-@media (max-width: 768px) {
-  .sg-col {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
-}
-```
-
-#### HTML Example
-```html
-<div class="sg-row">
-  <div class="sg-col-12">Full Width on Mobile</div>
-  <div class="sg-col-6">Full Width on Mobile</div>
-</div>
-```
+### v2.x
+- Flexbox grid, margin/padding helpers, font-size generator, mixins
 
 ---
 
-## CSS Grid System
+## License
 
-The CSS Grid system provides a flexible and powerful way to design grid layouts using the `grid-template-columns` property and other CSS Grid features.
-
-### Basic Grid Layout
-
-#### SCSS
-```scss
-.grid {
-  --grid-cols: 12;
-  display: grid;
-  grid-template-columns: repeat(var(--grid-cols), 1fr);
-  gap: 15px;
-}
-```
-
-#### HTML Example
-```html
-<div class="grid">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</div>
-```
-
-### Auto-Sized Grid Layout
-
-Auto-fit grid layout adjusts columns based on available space.
-
-#### SCSS
-```scss
-.grid-auto {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-}
-```
-
-#### HTML Example
-```html
-<div class="grid-auto">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</div>
-```
-
----
-
-### 1. **Basic Grid Structure**
-
-#### Grid Container
-The `.grid` class defines a basic grid layout with customizable column count and gap between grid items.
-
-```scss
-.grid,
-[class*="grid-auto-"] {
-  display: grid;
-  grid-gap: var(--grid-gap, 0); // Sets the gap between grid items
-}
-```
-
-**Example:**
-```html
-<div class="grid">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</div>
-```
-
----
-
-### 2. **Column Count Customization**
-
-The `grid-template-columns` property dynamically calculates the number of columns based on a custom property `--grid-cols`, which can be set globally or locally.
-
-```scss
-.grid {
-  --grid-cols: 4; // Sets default column count
-  grid-template-columns: repeat(var(--grid-cols), 1fr); // Creates equal-width columns
-
-  > * {
-    grid-column: span var(--span, 4) / span var(--span, 4);
-  }
-}
-```
-
-**Example:**
-```html
-<div class="grid">
-  <div style="--span: 2">Item 1</div> <!-- Spans 2 columns -->
-  <div>Item 2</div> <!-- Default spans all columns -->
-</div>
-```
-
----
-
-### 3. **Auto-Sized Grids**
-
-The `.grid-auto-*` classes automatically create columns that resize to fit available space, with a minimum column width defined by custom properties like `--col-min-width`.
-
-```scss
-.grid-auto-xs,
-.grid-auto-sm,
-.grid-auto-md,
-.grid-auto-lg,
-.grid-auto-xl {
-  grid-template-columns: repeat(auto-fit, minmax(var(--col-min-width), 1fr));
-}
-```
-
-**Column Size Examples:**
-```scss
-.grid-auto-xs {
-  --col-min-width: 8rem;
-}
-.grid-auto-sm {
-  --col-min-width: 10rem;
-}
-.grid-auto-md {
-  --col-min-width: 15rem;
-}
-```
-
-**Example:**
-```html
-<div class="grid-auto-xs">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</div>
-```
-
----
-
-### 4. **Grid Gaps (Spacing Between Items)**
-
-The `grid-gap` property can be customized using predefined classes like `.grid-gap-xs` for various spacing needs.
-
-```scss
-.grid-gap-xxxxs {
-  --grid-gap: var(--space-xxxxs, 0.125rem);
-}
-.grid-gap-md {
-  --grid-gap: var(--space-md, 1.25rem);
-}
-```
-
-**Example:**
-```html
-<div class="grid grid-gap-md">
-  <div>Item 1</div>
-  <div>Item 2</div>
-</div>
-```
-
----
-
-### 5. **Column Spans and Starts**
-
-Custom properties `--span`, `--col-start`, and `--col-end` are used to control how many columns an item spans or where a column starts and ends.
-
-```scss
-@for $i from 1 through $grid-columns {
-  .col-#{$i} {
-    --span: #{$i}; // Sets the span for the column
-  }
-
-  .col-start-#{$i} {
-    grid-column-start: #{$i}; // Starts the column at index i
-  }
-
-  .col-end-#{$i + 1} {
-    grid-column-end: #{$i + 1}; // Ends the column at index i+1
-  }
-}
-```
-
-**Example:**
-```html
-<div class="grid">
-  <div class="col-2">Item 1</div> <!-- Spans 2 columns -->
-  <div class="col-start-3 col-end-4">Item 2</div> <!-- Starts at column 3, ends at 4 -->
-</div>
-```
-
----
-
-### 6. **Responsive Breakpoints**
-
-Using the `@mixin breakpoint`, grid layouts and custom column widths can be adapted for various screen sizes.
-
-```scss
-@mixin breakpoint($breakpoint) {
-  @media (min-width: map-get($breakpoints, $key: $breakpoint)) {
-    @content;
-  }
-}
-```
-
-#### Example of Responsive Grid:
-```scss
-@include breakpoint(xs) {
-  .grid-auto-xs-xsmall {
-    --col-min-width: 8rem;
-  }
-}
-
-@include breakpoint(sm) {
-  .grid-auto-sm-small {
-    --col-min-width: 10rem;
-  }
-}
-```
-
----
-
-### 7. **Responsive Auto-Sized Columns**
-
-Each grid size has specific configurations for minimum column width, ensuring responsive design across devices.
-
-```scss
-@include breakpoint(md) {
-  .grid-auto-md-medium {
-    --col-min-width: 15rem;
-  }
-}
-
-@include breakpoint(lg) {
-  .grid-auto-lg-large {
-    --col-min-width: 20rem;
-  }
-}
-```
-
----
-
-### 8. **Complete Example**
-
-Here’s a full HTML example using these concepts:
-
-```html
-<div class="grid grid-auto-md grid-gap-lg">
-  <div class="col-2">Item 1</div>
-  <div class="col-3">Item 2</div>
-  <div>Item 3</div>
-  <div>Item 4</div>
-</div>
-```
-
-### Explanation:
-- `.grid-auto-md`: Automatically sizes columns for medium devices.
-- `.grid-gap-lg`: Adds large spacing between grid items.
-- `.col-2`: First item spans 2 columns.
-- `.col-3`: Second item spans 3 columns.
-
----
-
-
-
-
-
-
-
-
-
-
-
-
-### Fixed Number of Columns
-
-Use `.col-#` classes to control the number of columns an item spans.
-
-#### SCSS
-```scss
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    grid-column: span $i;
-  }
-}
-```
-
-#### HTML Example
-```html
-<div class="grid">
-  <div class="col-6">Spans 6 Columns</div>
-  <div class="col-12">Spans 12 Columns</div>
-</div>
-```
-
-### Grid Gaps
-
-Define custom grid gaps using predefined classes.
-
-#### SCSS
-```scss
-.grid-gap-md {
-  gap: 1.25rem;
-}
-```
-
-#### HTML Example
-```html
-<div class="grid grid-gap-md">
-  <div>Item 1</div>
-  <div>Item 2</div>
-</div>
-```
-
-### Responsive Grid Design
-
-Adjust the grid based on breakpoints for responsive layouts.
-
-#### SCSS
-```scss
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-```
-
-#### HTML Example
-```html
-<div class="grid">
-  <div class="col-6">Item 1</div>
-  <div class="col-6">Item 2</div>
-</div>
-```
-
----
-
-## Font Size Generator
-
-Create font size classes dynamically with a helper function and mixin.
-
-### Helper Function
-```scss
-@function generate-font-size($size) {
-  @return $size + px;
-}
-```
-
-### Mixin
-```scss
-@mixin generate-font-sizes($min-size, $max-size) {
-  @for $i from $min-size through $max-size {
-    .fs-#{$i} {
-      font-size: generate-font-size($i);
-    }
-  }
-}
-```
-
-#### Example
-```scss
-@include generate-font-sizes(1, 100);
-```
-
-#### HTML Example
-```html
-<p class="fs-12">This text is 12px in size.</p>
-<p class="fs-24">This text is 24px in size.</p>
-```
-
----
-
-## Margin Helper
-
-Generate dynamic margin classes for top, bottom, left, and right.
-
-### Mixin
-```scss
-@mixin generate-margin($property, $min-size, $max-size) {
-  @for $i from $min-size through $max-size {
-    .#{$property}-#{$i} {
-      #{$property}: generate-margin-size($i);
-    }
-  }
-}
-```
-
-#### Example
-```scss
-@include generate-margin(mt, 0, 100); // Generates margin-top classes
-```
-
-#### HTML Example
-```html
-<div class="mt-10 mb-20">This element has 10px top margin and 20px bottom margin.</div>
-```
-
----
-
-## Box Shadow Mixin
-
-### Mixin Definition
-```scss
-@mixin box-shadow($x, $y, $blur, $color, $spread: 0, $inset: false) {
-  $shadow-type: if($inset == true, inset, null);
-  box-shadow: $shadow-type $x $y $blur $spread $color;
-}
-```
-
-#### Example Usage
-```scss
-@include box-shadow(5px, 5px, 10px, rgba(0,
-
- 0, 0, 0.4));
-```
-
----
-
-## Clearfix Mixin
-
-### Mixin Definition
-```scss
-@mixin clearfix {
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-```
-
-#### HTML Example
-```html
-<div class="clearfix">
-  <div class="child">Floated Element</div>
-</div>
-```
-
----
-
-## Modifiers Mixin
-
-### Mixin Definition
-```scss
-@mixin modifiers($map, $attribute, $prefix: "-", $separator: "-", $base: "base") {
-  @each $key, $value in $map {
-    &#{if($key != $base, $prefix + $key, "")} {
-      #{$attribute}: $value;
-    }
-  }
-}
-```
-
----
-
-## Border Radius Mixin
-
-### Mixin Definition
-```scss
-@mixin border-radius($radius) {
-  border-radius: $radius;
-}
-```
-
----
-
-## Padding Mixin
-
-### Mixin Definition
-```scss
-@mixin generate-padding($side) {
-  @for $i from 0 through 100 {
-    .#{$side}-#{$i} {
-      padding-#{$side}: $i + px;
-    }
-  }
-}
-```
-
-#### Example Usage
-```scss
-@include generate-padding('t'); // Generates padding-top classes
-```
-
-#### HTML Example
-```html
-<div class="pt-10">This element has 10px padding at the top.</div>
-```
+MIT © [Pooya Golchian](https://github.com/pooyagolchian)
