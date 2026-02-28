@@ -2,33 +2,29 @@
 // Container Query Helpers
 //
 // Makes it easy to use CSS Container Queries (@container) for component-level
-// responsive behavior — something Tailwind utility classes cannot do natively.
+// responsive behavior.
 //
 // Usage:
-//   <div class="cq">
-//     <div class="c-col-6-sm">…</div>
+//   <div class="sh-cq">
+//     <div class="sh-c-col-6-sm">…</div>
 //   </div>
 //
-// Mixin usage:
+// Mixin:
 //   .card { @include container-bp('card', sm) { font-size: 1.25rem; } }
-//
-// Breakpoints reuse the same $breakpoints map from _variables.scss
 // =============================================================================
-@import "../variables";
+@use "sass:map";
+@use "../variables" as vars;
 
 // Container-type utility classes
-.cq        { container-type: inline-size; }
-.cq-size   { container-type: size; }
-.cq-normal { container-type: normal; }
-
-// Named container utility  — <div class="cq" data-cq="sidebar">
-[data-cq] { container-type: inline-size; container-name: attr(data-cq); }
+.#{vars.$prefix}cq        { container-type: inline-size; }
+.#{vars.$prefix}cq-size   { container-type: size; }
+.#{vars.$prefix}cq-normal { container-type: normal; }
 
 // Mixin: wrap content in a @container rule using the $breakpoints scale
 // @param $name      — container name (or 'none' for unnamed containers)
 // @param $breakpoint — key from $breakpoints map
 @mixin container-bp($name, $breakpoint) {
-  $size: map-get($breakpoints, $breakpoint);
+  $size: map.get(vars.$breakpoints, $breakpoint);
   @if $name == none {
     @container (min-width: #{$size}) { @content; }
   } @else {
@@ -36,13 +32,12 @@
   }
 }
 
-// Responsive grid columns using @container (prefix: c-)
-// These work like .col-{n} from _css-grid.scss but trigger on container width.
-.cq {
-  @each $bp-name, $bp-size in $breakpoints {
+// Responsive grid columns using @container (prefix: sh-c-)
+.#{vars.$prefix}cq {
+  @each $bp-name, $bp-size in vars.$breakpoints {
     @container (min-width: #{$bp-size}) {
       @for $i from 1 through 12 {
-        .c-col-#{$i}-#{$bp-name} {
+        .#{vars.$prefix}c-col-#{$i}-#{$bp-name} {
           --span: #{$i};
         }
       }

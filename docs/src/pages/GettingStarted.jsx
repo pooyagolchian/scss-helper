@@ -44,15 +44,18 @@ export default function GettingStarted() {
           lang="scss"
           filename="src/main.scss"
           code={`// Entire library
-@import 'scss-helper';
+@use 'scss-helper';
 
-// Now use any utility class, mixin, or function:
+// Or with a custom prefix:
+@use 'scss-helper' with ($prefix: 'my-');
+
+// Cherry-pick modules:
+@use 'scss-helper/src/golden/golden-ratio' as golden;
+
 .hero {
-  font-size: golden-step(3);          // 4.236rem from golden ratio
-  @include golden-columns(var(--s5)); // 61.8% / 38.2% grid layout
-}
-
-h1 { font-size: fluid-type(2rem, 4rem); } // responsive via clamp()`}
+  font-size: golden.golden-step(3);          // 4.236rem
+  @include golden.golden-columns;            // 61.8% / 38.2% grid
+}`}
         />
 
         <SubSection title="Webpack / sass-loader">
@@ -107,10 +110,10 @@ export default defineConfig({
         <CodeBlock
           lang="css"
           filename="HTML or CSS @import"
-          code={`/* Full utility kit — ~94KB uncompressed */
+          code={`/* Full utility kit — ~30KB compressed */
 @import 'scss-helper/css';
 
-/* CSS Grid system only — ~15KB */
+/* CSS Grid system only — ~12KB */
 @import 'scss-helper/css/grid';
 
 /* Design tokens only — ~2KB (just :root vars) */

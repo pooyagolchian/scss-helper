@@ -1,46 +1,44 @@
 // =============================================================================
 // Design Token Layer — Colors
-// Bridges Sass variables to CSS custom properties for use in any context,
-// including Tailwind v4's @theme layer.
+// Bridges Sass variables to CSS custom properties.
 // =============================================================================
-@import "../variables";
+@use "../variables" as vars;
 
 :root {
   // Palette
-  --color-white:       #{$white};
-  --color-black:       #{$black};
+  --color-white:       #{vars.$white};
+  --color-black:       #{vars.$black};
 
   // Gray scale
-  --color-gray-base:   #{$gray-base};
-  --color-gray-100:    #{$gray-100};
-  --color-gray-200:    #{$gray-200};
-  --color-gray-300:    #{$gray-300};
-  --color-gray-400:    #{$gray-400};
-  --color-gray-500:    #{$gray-500};
-  --color-gray-600:    #{$gray-600};
-  --color-gray-700:    #{$gray-700};
-  --color-gray-800:    #{$gray-800};
-  --color-gray-900:    #{$gray-900};
+  --color-gray-100:    #{vars.$gray-100};
+  --color-gray-200:    #{vars.$gray-200};
+  --color-gray-300:    #{vars.$gray-300};
+  --color-gray-400:    #{vars.$gray-400};
+  --color-gray-500:    #{vars.$gray-500};
+  --color-gray-600:    #{vars.$gray-600};
+  --color-gray-700:    #{vars.$gray-700};
+  --color-gray-800:    #{vars.$gray-800};
+  --color-gray-900:    #{vars.$gray-900};
 
   // Hue palette
-  --color-blue:        #{$blue};
-  --color-indigo:      #{$indigo};
-  --color-purple:      #{$purple};
-  --color-pink:        #{$pink};
-  --color-red:         #{$red};
-  --color-orange:      #{$orange};
-  --color-yellow:      #{$yellow};
-  --color-green:       #{$green};
-  --color-teal:        #{$teal};
-  --color-cyan:        #{$cyan};
+  --color-blue:        #{vars.$blue};
+  --color-indigo:      #{vars.$indigo};
+  --color-purple:      #{vars.$purple};
+  --color-pink:        #{vars.$pink};
+  --color-red:         #{vars.$red};
+  --color-orange:      #{vars.$orange};
+  --color-yellow:      #{vars.$yellow};
+  --color-green:       #{vars.$green};
+  --color-teal:        #{vars.$teal};
+  --color-cyan:        #{vars.$cyan};
 
   // Semantic roles
-  --color-primary:     #{$primary};
-  --color-secondary:   #{$secondary};
-  --color-success:     #{$success};
-  --color-info:        #{$info};
-  --color-warning:     #{$warning};
-  --color-danger:      #{$danger};
-  --color-light:       #{$light};
-  --color-dark:        #{$dark};
+  --color-primary:     #{vars.$primary};
+  --color-secondary:   #{vars.$secondary};
+  --color-success:     #{vars.$success};
+  --color-info:        #{vars.$info};
+  --color-warning:     #{vars.$warning};
+  --color-danger:      #{vars.$danger};
+  --color-light:       #{vars.$light};
+  --color-dark:        #{vars.$dark};
 }

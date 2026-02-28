@@ -1,19 +1,14 @@
-/*                                                                      
-Scss helper functionality to generate  modular css code.
-This package developed by Pooya Golchian.
-Website: https://pooyagolchian.github.io/
-Gmail: pooya.golchian@gmail.com
-*/
-
-@import "variables";
-@import "tokens/index";
-@import "mixin";
-@import "helper";
-@import "modifiers";
-@import "css-grid";
-@import "typography/fluid";
-@import "dark/dark-mode";
-@import "container/container-query";
-@import "animation/transitions";
-@import "animation/animations";
-@import "golden/golden-ratio";
+// =============================================================================
+// scss-helper v5 — Full stylesheet
+// Compiles all modules into a single CSS file.
+// =============================================================================
+@use "variables";
+@use "tokens/index";
+@use "mixin";
+@use "css-grid";
+@use "typography/fluid";
+@use "dark/dark-mode";
+@use "container/container-query";
+@use "animation/transitions";
+@use "animation/animations";
+@use "golden/golden-ratio";

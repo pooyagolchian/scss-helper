@@ -1,10 +1,17 @@
-@mixin border-stroke($value, $color: $black) {
-  @if $value==light {
-    border: $border-width-light solid $color;
-  } @else if $value==medium {
-    border: $border-width-medium solid $color;
-  } @else if $value==heavy {
-    border: $border-width-heavy solid $color;
+// =============================================================================
+// Border Stroke Mixin
+// Usage: @include border-stroke(light);
+//        @include border-stroke(medium, red);
+// =============================================================================
+@use "../variables" as vars;
+
+@mixin border-stroke($value, $color: vars.$black) {
+  @if $value == light {
+    border: vars.$border-width-light solid $color;
+  } @else if $value == medium {
+    border: vars.$border-width-medium solid $color;
+  } @else if $value == heavy {
+    border: vars.$border-width-heavy solid $color;
   } @else {
     border: none;
   }

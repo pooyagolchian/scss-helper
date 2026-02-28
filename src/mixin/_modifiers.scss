@@ -1,13 +1,27 @@
+// =============================================================================
+// Modifiers Mixin — recursive map walker
+// Generates modifier classes from a Sass map.
+//
+// Usage:
+//   .text { @include modifiers($colors, "color"); }
+//   → .text-primary { color: #0d6efd; }
+// =============================================================================
+@use "sass:meta";
+
 @mixin modifiers(
-  $map,               // The map containing the modifiers and their values
-  $attribute,         // The CSS property (e.g., "color", "margin")
-  $prefix: "-",       // Optional prefix for modifiers (e.g., "-")
-  $separator: "-",    // Optional separator between base class and modifier
-  $base: "base"       // The base class, for which no modifier is needed
+  $map,
+  $attribute,
+  $prefix: "-",
+  $separator: "-",
+  $base: "base"
 ) {
   @each $key, $value in $map {
-    &#{if($key != $base, $prefix + $key, "")} {
-      @if type-of($value) == "map" {
+    $suffix: "";
+    @if $key != $base {
+      $suffix: $prefix + $key;
+    }
+    &#{$suffix} {
+      @if meta.type-of($value) == "map" {
         @include modifiers($value, $attribute, $prefix, $separator);
       } @else {
         #{$attribute}: $value;

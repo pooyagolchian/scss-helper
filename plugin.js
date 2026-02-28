@@ -11,18 +11,16 @@
 //   };
 //
 // What this plugin does:
-//   1. addBase    — injects :root design tokens (colors, spacing, typography)
-//   2. addUtilities — registers scss-helper utility classes Tailwind can't generate
-//   3. theme.extend — exposes scss-helper tokens into the Tailwind theme so
-//                     tw-text-primary etc. reference the same CSS custom properties
+//   1. addBase     — injects :root design tokens (colors, spacing, typography)
+//   2. addUtilities — registers scss-helper utility classes (sh-* prefixed)
+//   3. theme.extend — exposes tokens into the Tailwind theme
 // =============================================================================
 const plugin = require('tailwindcss/plugin');
 
 // Design tokens — kept in sync with src/tokens/
 const colors = {
-  white:     '#fff',
-  black:     '#000',
-  'gray-base': '#333',
+  white:       '#fff',
+  black:       '#000',
   'gray-100':  '#f8f9fa',
   'gray-200':  '#e9ecef',
   'gray-300':  '#dee2e6',
@@ -32,25 +30,24 @@ const colors = {
   'gray-700':  '#495057',
   'gray-800':  '#343a40',
   'gray-900':  '#212529',
-  blue:      '#0d6efd',
-  indigo:    '#6610f2',
-  purple:    '#6f42c1',
-  pink:      '#d63384',
-  red:       '#dc3545',
-  orange:    '#fd7e14',
-  yellow:    '#ffc107',
-  green:     '#28a745',
-  teal:      '#20c997',
-  cyan:      '#17a2b8',
-  // Semantic
-  primary:   '#0d6efd',
-  secondary: '#6c757d',
-  success:   '#28a745',
-  info:      '#17a2b8',
-  warning:   '#ffc107',
-  danger:    '#dc3545',
-  light:     '#f8f9fa',
-  dark:      '#343a40',
+  blue:        '#0d6efd',
+  indigo:      '#6610f2',
+  purple:      '#6f42c1',
+  pink:        '#d63384',
+  red:         '#dc3545',
+  orange:      '#fd7e14',
+  yellow:      '#ffc107',
+  green:       '#28a745',
+  teal:        '#20c997',
+  cyan:        '#17a2b8',
+  primary:     '#0d6efd',
+  secondary:   '#6c757d',
+  success:     '#28a745',
+  info:        '#17a2b8',
+  warning:     '#ffc107',
+  danger:      '#dc3545',
+  light:       '#f8f9fa',
+  dark:        '#343a40',
 };
 
 const spacingScale = {
@@ -82,17 +79,14 @@ const spacingScale = {
 function buildRootVars() {
   const vars = {};
 
-  // Color tokens
   for (const [name, value] of Object.entries(colors)) {
     vars[`--color-${name}`] = value;
   }
 
-  // Spacing tokens
   for (const [key, value] of Object.entries(spacingScale)) {
     vars[`--spacing-${key}`] = value;
   }
 
-  // Typography tokens
   Object.assign(vars, {
     '--font-size-sm':   '0.875rem',
     '--font-size-base': '1rem',
@@ -107,7 +101,6 @@ function buildRootVars() {
     '--line-height-sm':   '1.25',
     '--line-height-base': '1.5',
     '--line-height-lg':   '2',
-    // Transition defaults
     '--duration':       '200ms',
     '--duration-fast':  '100ms',
     '--duration-slow':  '400ms',
@@ -117,7 +110,7 @@ function buildRootVars() {
   return vars;
 }
 
-// Fluid typography utilities (mirrors src/typography/_fluid.scss)
+// Fluid typography helper
 const fluidTypeScale = {
   xs:   ['0.75rem',  '0.875rem'],
   sm:   ['0.875rem', '1rem'],
@@ -130,14 +123,13 @@ const fluidTypeScale = {
 };
 
 function fluidType(minSize, maxSize, minVw = '20rem', maxVw = '80rem') {
-  // clamp(min, preferred, max) — CSS calc as a string, resolved at render time
   return `clamp(${minSize}, calc(${minSize} + (${maxSize.replace('rem', '')} - ${minSize.replace('rem', '')}) * ((100vw - ${minVw}) / (${maxVw.replace('rem', '')} - ${minVw.replace('rem', '')}))), ${maxSize})`;
 }
 
 module.exports = plugin.withOptions(
   function (options = {}) {
-    return function ({ addBase, addUtilities, addComponents }) {
-      const injectTokens = options.injectTokens !== false; // true by default
+    return function ({ addBase, addUtilities }) {
+      const injectTokens = options.injectTokens !== false;
 
       // 1. Inject :root design tokens
       if (injectTokens) {
@@ -170,28 +162,28 @@ module.exports = plugin.withOptions(
         });
       }
 
-      // 2. Fluid typography utilities
+      // 2. Fluid typography utilities (sh- prefixed)
       const fluidUtils = {};
       for (const [key, [min, max]] of Object.entries(fluidTypeScale)) {
-        fluidUtils[`.text-fluid-${key}`] = { fontSize: fluidType(min, max) };
+        fluidUtils[`.sh-text-fluid-${key}`] = { fontSize: fluidType(min, max) };
       }
       addUtilities(fluidUtils);
 
       // 3. Container query utilities
       addUtilities({
-        '.cq':        { 'container-type': 'inline-size' },
-        '.cq-size':   { 'container-type': 'size' },
-        '.cq-normal': { 'container-type': 'normal' },
+        '.sh-cq':        { 'container-type': 'inline-size' },
+        '.sh-cq-size':   { 'container-type': 'size' },
+        '.sh-cq-normal': { 'container-type': 'normal' },
       });
 
       // 4. Transition utilities
       addUtilities({
-        '.transition-colors': {
+        '.sh-transition-colors': {
           'transition-property': 'color, background-color, border-color, text-decoration-color, fill, stroke',
           'transition-duration': 'var(--duration, 200ms)',
           'transition-timing-function': 'var(--easing, cubic-bezier(0.4, 0, 0.2, 1))',
         },
-        '.transition-shadow': {
+        '.sh-transition-shadow': {
           'transition-property': 'box-shadow',
           'transition-duration': 'var(--duration, 200ms)',
           'transition-timing-function': 'var(--easing, cubic-bezier(0.4, 0, 0.2, 1))',
@@ -200,24 +192,17 @@ module.exports = plugin.withOptions(
 
       // 5. Animation utilities
       addUtilities({
-        '.animate-fade-in':    { animation: 'fade-in    var(--duration, 200ms) var(--easing, ease) both' },
-        '.animate-slide-up':   { animation: 'slide-up   var(--duration, 300ms) var(--easing, ease) both' },
-        '.animate-slide-down': { animation: 'slide-down var(--duration, 300ms) var(--easing, ease) both' },
-        '.animate-scale-in':   { animation: 'scale-in   var(--duration, 200ms) var(--easing, ease) both' },
-        '.animate-spin':       { animation: 'spin       var(--duration, 1000ms) linear infinite' },
-        '.animate-pulse':      { animation: 'pulse      var(--duration, 2000ms) cubic-bezier(0.4, 0, 0.6, 1) infinite' },
-        '.animate-bounce':     { animation: 'bounce     var(--duration, 1000ms) infinite' },
-      });
-
-      // 6. sg-* flexbox grid (not generated by Tailwind)
-      addComponents({
-        '.sg-row': { display: 'flex', 'flex-wrap': 'wrap', 'margin-right': '-15px', 'margin-left': '-15px' },
-        '.sg-col': { 'padding-right': '15px', 'padding-left': '15px', 'flex-grow': '1' },
+        '.sh-animate-fade-in':    { animation: 'sh-fade-in    var(--duration, 200ms) var(--easing, ease) both' },
+        '.sh-animate-slide-up':   { animation: 'sh-slide-up   var(--duration, 300ms) var(--easing, ease) both' },
+        '.sh-animate-slide-down': { animation: 'sh-slide-down var(--duration, 300ms) var(--easing, ease) both' },
+        '.sh-animate-scale-in':   { animation: 'sh-scale-in   var(--duration, 200ms) var(--easing, ease) both' },
+        '.sh-animate-spin':       { animation: 'sh-spin       var(--duration, 1000ms) linear infinite' },
+        '.sh-animate-pulse':      { animation: 'sh-pulse      var(--duration, 2000ms) cubic-bezier(0.4, 0, 0.6, 1) infinite' },
+        '.sh-animate-bounce':     { animation: 'sh-bounce     var(--duration, 1000ms) infinite' },
       });
     };
   },
   function (options = {}) {
-    // theme.extend — expose scss-helper tokens into the Tailwind theme
     return {
       theme: {
         extend: {

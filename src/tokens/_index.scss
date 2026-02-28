@@ -1,14 +1,11 @@
 // =============================================================================
 // Design Token Layer — Index
-// Outputs only CSS custom properties (:root vars). Import this file standalone
-// to get dist/tokens.css, or @import it inside your stylesheet.
+// Outputs CSS custom properties (:root vars).
 //
-// Tailwind v4 usage:
-//   @import "scss-helper/css/tokens"   (pre-compiled)
-//   or paste :root block inside @theme {}
-//
-// Tailwind v3 usage: automatically injected by the plugin (plugin.js)
+// Usage:
+//   @use "scss-helper/src/tokens/index";     // SCSS
+//   @import "scss-helper/css/tokens";         // pre-compiled CSS
 // =============================================================================
-@import "colors";
-@import "spacing";
-@import "typography";
+@use "colors";
+@use "spacing";
+@use "typography";

@@ -1,24 +1,20 @@
 // =============================================================================
-// scss-helper — Root entry point
+// scss-helper v5 — Root entry point
 //
-// @import this file to get everything:
-//   @import "~scss-helper";          // in Webpack/sass-loader
-//   @import "scss-helper";           // with node_modules in load path
-//
-// Or cherry-pick individual layers:
-//   @import "scss-helper/src/tokens/index";
-//   @import "scss-helper/src/typography/fluid";
-//   @import "scss-helper/src/animation/transitions";
+// Usage:
+//   @use "scss-helper";                                 // everything
+//   @use "scss-helper" with ($prefix: "my-");           // custom prefix
+//   @use "scss-helper/src/tokens/index";                // tokens only
+//   @use "scss-helper/src/typography/fluid";             // fluid type only
+//   @use "scss-helper/src/golden/golden-ratio";          // golden ratio only
 // =============================================================================
-@import "src/variables";
-@import "src/tokens/index";
-@import "src/mixin";
-@import "src/helper";
-@import "src/modifiers";
-@import "src/css-grid";
-@import "src/typography/fluid";
-@import "src/dark/dark-mode";
-@import "src/container/container-query";
-@import "src/animation/transitions";
-@import "src/animation/animations";
-@import "src/golden/golden-ratio";
+@forward "src/variables";
+@use "src/tokens/index";
+@use "src/mixin";
+@use "src/css-grid";
+@use "src/typography/fluid";
+@use "src/dark/dark-mode";
+@use "src/container/container-query";
+@use "src/animation/transitions";
+@use "src/animation/animations";
+@use "src/golden/golden-ratio";

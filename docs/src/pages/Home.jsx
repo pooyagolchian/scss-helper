@@ -68,7 +68,7 @@ export default function Home() {
       <div className={styles.hero}>
         <div className={styles.heroEyebrow}>
           <span className={styles.phi}>φ</span>
-          <span>scss-helper v4.0</span>
+          <span>scss-helper v5.0</span>
         </div>
         <h1 className={styles.heroTitle}>
           Fill the Gaps.
@@ -121,14 +121,14 @@ export default function Home() {
 
         <CodeBlock
           lang="scss"
-          filename="1. SCSS source — @import everything"
+          filename="1. SCSS source — @use everything"
           code={`// In your main SCSS file
-@import 'scss-helper';          // via node_modules + sass load path
+@use 'scss-helper';
 
 // Or cherry-pick individual modules:
-@import '~scss-helper/src/tokens/index';
-@import '~scss-helper/src/typography/fluid';
-@import '~scss-helper/src/golden/golden-ratio';`}
+@use 'scss-helper/src/tokens/index';
+@use 'scss-helper/src/typography/fluid';
+@use 'scss-helper/src/golden/golden-ratio';`}
         />
 
         <CodeBlock

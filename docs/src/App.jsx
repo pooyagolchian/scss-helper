@@ -8,7 +8,6 @@ import GoldenRatio from './pages/GoldenRatio'
 import Grid from './pages/Grid'
 import Home from './pages/Home'
 import Mixins from './pages/Mixins'
-import Spacing from './pages/Spacing'
 import TailwindPlugin from './pages/TailwindPlugin'
 import Tokens from './pages/Tokens'
 import Typography from './pages/Typography'
@@ -22,7 +21,6 @@ export default function App() {
         <Route path="tokens" element={<Tokens />} />
         <Route path="golden-ratio" element={<GoldenRatio />} />
         <Route path="typography" element={<Typography />} />
-        <Route path="spacing" element={<Spacing />} />
         <Route path="grid" element={<Grid />} />
         <Route path="dark-mode" element={<DarkMode />} />
         <Route path="container-queries" element={<ContainerQueries />} />

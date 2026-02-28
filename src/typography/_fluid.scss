@@ -4,52 +4,40 @@
 // Uses CSS clamp() to scale font sizes smoothly between two viewport widths.
 // No JavaScript, no media query breakpoints — purely mathematical.
 //
-// Design rationale:
-//   clamp(MIN, PREFERRED, MAX)
-//   PREFERRED is computed entirely inside CSS calc(), so no Sass division needed.
-//
 // Usage:
-//   .text-fluid-lg { font-size: fluid-type(1rem, 1.5rem, 20rem, 80rem); }
-//   <h1 class="text-fluid-4xl">Headline</h1>
-//
-// Mixin usage in your own SCSS:
+//   .sh-text-fluid-lg — fluid 18px → 22px
 //   h1 { font-size: fluid-type(1.5rem, 3rem); }
 // =============================================================================
-@import "../variables";
+@use "sass:list";
+@use "../variables" as vars;
 
 // Function: fluid-type
 // Returns a clamp() expression with CSS-native calc() arithmetic.
-// All arguments should be rem values.
 @function fluid-type(
   $min-size,
   $max-size,
-  $min-vw: 20rem,  // 320px — mobile base
-  $max-vw: 80rem   // 1280px — desktop base
+  $min-vw: 20rem,
+  $max-vw: 80rem
 ) {
-  // Preferred value: linear interpolation entirely in calc()
-  // formula: min-size + (max-size - min-size) * ((100vw - min-vw) / (max-vw - min-vw))
   $preferred: "#{$min-size} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-vw}) / (#{$max-vw} - #{$min-vw}))";
   @return clamp(#{$min-size}, calc(#{$preferred}), #{$max-size});
 }
 
 // Fluid type scale
-// Override this map with !default to customize your scale:
 $fluid-type-scale: (
-  xs:  (0.75rem,  0.875rem),  // 12–14px
-  sm:  (0.875rem, 1rem),      // 14–16px
-  base:(1rem,     1.125rem),  // 16–18px
-  lg:  (1.125rem, 1.375rem),  // 18–22px
-  xl:  (1.25rem,  1.75rem),   // 20–28px
-  2xl: (1.5rem,   2.25rem),   // 24–36px
-  3xl: (1.875rem, 3rem),      // 30–48px
-  4xl: (2.25rem,  4rem),      // 36–64px
+  xs:  (0.75rem,  0.875rem),
+  sm:  (0.875rem, 1rem),
+  base:(1rem,     1.125rem),
+  lg:  (1.125rem, 1.375rem),
+  xl:  (1.25rem,  1.75rem),
+  2xl: (1.5rem,   2.25rem),
+  3xl: (1.875rem, 3rem),
+  4xl: (2.25rem,  4rem),
 ) !default;
 
-// Generate .text-fluid-{key} classes
+// Generate .sh-text-fluid-{key} classes
 @each $key, $sizes in $fluid-type-scale {
-  .text-fluid-#{$key} {
-    font-size: fluid-type(nth($sizes, 1), nth($sizes, 2));
+  .#{vars.$prefix}text-fluid-#{$key} {
+    font-size: fluid-type(list.nth($sizes, 1), list.nth($sizes, 2));
   }
 }
-
-

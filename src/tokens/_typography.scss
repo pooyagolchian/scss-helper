@@ -1,36 +1,36 @@
 // =============================================================================
 // Design Token Layer — Typography
-// Exposes Sass typography variables as CSS custom properties.
+// Exposes typography variables as CSS custom properties.
 // =============================================================================
-@import "../variables";
+@use "../variables" as vars;
 
 :root {
   // Font sizes
-  --font-size-sm:   #{$font-size-sm};
-  --font-size-base: #{$font-size-base};
-  --font-size-lg:   #{$font-size-lg};
-  --font-size-xl:   #{$font-size-base * 1.5};
-  --font-size-2xl:  #{$font-size-base * 1.875};
-  --font-size-3xl:  #{$font-size-base * 2.25};
-  --font-size-4xl:  #{$font-size-base * 3};
+  --font-size-sm:   #{vars.$font-size-sm};
+  --font-size-base: #{vars.$font-size-base};
+  --font-size-lg:   #{vars.$font-size-lg};
+  --font-size-xl:   #{vars.$font-size-base * 1.5};
+  --font-size-2xl:  #{vars.$font-size-base * 1.875};
+  --font-size-3xl:  #{vars.$font-size-base * 2.25};
+  --font-size-4xl:  #{vars.$font-size-base * 3};
 
   // Heading sizes
-  --font-size-h1: #{$h1-font-size};
-  --font-size-h2: #{$h2-font-size};
-  --font-size-h3: #{$h3-font-size};
-  --font-size-h4: #{$h4-font-size};
-  --font-size-h5: #{$h5-font-size};
-  --font-size-h6: #{$h6-font-size};
+  --font-size-h1: #{vars.$h1-font-size};
+  --font-size-h2: #{vars.$h2-font-size};
+  --font-size-h3: #{vars.$h3-font-size};
+  --font-size-h4: #{vars.$h4-font-size};
+  --font-size-h5: #{vars.$h5-font-size};
+  --font-size-h6: #{vars.$h6-font-size};
 
   // Font weights
-  --font-weight-lighter: #{$font-weight-lighter};
-  --font-weight-light:   #{$font-weight-light};
-  --font-weight-normal:  #{$font-weight-normal};
-  --font-weight-bold:    #{$font-weight-bold};
-  --font-weight-bolder:  #{$font-weight-bolder};
+  --font-weight-lighter: #{vars.$font-weight-lighter};
+  --font-weight-light:   #{vars.$font-weight-light};
+  --font-weight-normal:  #{vars.$font-weight-normal};
+  --font-weight-bold:    #{vars.$font-weight-bold};
+  --font-weight-bolder:  #{vars.$font-weight-bolder};
 
   // Line heights
-  --line-height-sm:   #{$line-height-sm};
-  --line-height-base: #{$line-height-base};
-  --line-height-lg:   #{$line-height-lg};
+  --line-height-sm:   #{vars.$line-height-sm};
+  --line-height-base: #{vars.$line-height-base};
+  --line-height-lg:   #{vars.$line-height-lg};
 }

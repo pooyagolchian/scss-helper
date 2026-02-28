@@ -1,197 +1,122 @@
-import { useEffect, useState } from 'react'
 import CodeBlock from '../components/CodeBlock'
-import { Callout, Demo, Page, PageHeader, Prose, Section } from '../components/Page'
+import { Page, PageHeader, Prose, Section } from '../components/Page'
 
 export default function DarkMode() {
-  const [theme, setTheme] = useState('dark')
-
-  // Initialize data-theme on mount; reset when leaving the page
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark')
-    return () => {
-      document.documentElement.removeAttribute('data-theme')
-    }
-  }, [])
-
-  function toggleTheme() {
-    const next = theme === 'dark' ? 'light' : 'dark'
-    document.documentElement.setAttribute('data-theme', next)
-    setTheme(next)
-  }
-
   return (
     <Page>
       <PageHeader
         eyebrow="Utilities"
         title="Dark Mode"
-        description="Dual-strategy dark mode: add data-theme='dark' to your root element for manual control, or let the browser's prefers-color-scheme handle it automatically."
+        description="Dual-strategy dark mode — works with JavaScript toggles ([data-theme]) and OS preferences (prefers-color-scheme) simultaneously."
       />
 
-      <Section title="How it works" id="how">
+      <Section title="How It Works" id="how">
         <Prose>
           <p>
-            The dark mode module outputs overrides under two selectors simultaneously:
-            <code>[data-theme="dark"]</code> for JS-toggled control and
-            <code>@media (prefers-color-scheme: dark)</code> for system-level preference. No
-            duplication — a single mixin generates both.
+            Dark mode activates under two conditions:
+          </p>
+          <ul>
+            <li>
+              <code>[data-theme="dark"]</code> on an ancestor element (JS-controlled)
+            </li>
+            <li>
+              <code>@media (prefers-color-scheme: dark)</code> from the OS, unless overridden by{' '}
+              <code>[data-theme="light"]</code>
+            </li>
+          </ul>
+        </Prose>
+      </Section>
+
+      <Section title="Token Overrides" id="tokens">
+        <Prose>
+          <p>
+            Semantic color tokens automatically shift in dark mode.
           </p>
         </Prose>
 
         <CodeBlock
-          lang="scss"
-          filename="src/dark/_dark-mode.scss"
-          code={`// The @mixin dark-mode generates overrides in both contexts:
-@mixin dark-mode {
-  [data-theme="dark"] & { @content; }
-
-  @media (prefers-color-scheme: dark) {
-    & { @content; }
-  }
-}
-
-// Usage:
-.card {
-  background: #fff;
-  color: #111;
-
-  @include dark-mode {
-    background: #1a1a1a;
-    color: #f4f4f4;
-  }
-}`}
+          lang="css"
+          code={`/* Automatic shifts in dark mode */
+--color-primary:   #0d6efd → #60a5fa
+--color-secondary: #6c757d → #9ca3af
+--color-success:   #28a745 → #4ade80
+--color-danger:    #dc3545 → #f87171
+/* ... and more */`}
         />
       </Section>
 
-      <Section title="Toggle with JavaScript" id="js-toggle">
-        <Demo label="Click to simulate dark mode toggle">
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              style={{
-                padding: '0.5rem 1rem',
-                borderRadius: '6px',
-                border: '1px solid var(--border)',
-                background: 'var(--bg-card)',
-                color: 'var(--text)',
-                cursor: 'pointer',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.8rem',
-                transition: 'background 160ms ease, color 160ms ease',
-              }}
-              onClick={toggleTheme}
-            >
-              Toggle data-theme
-            </button>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                padding: '0.25rem 0.6rem',
-                borderRadius: '4px',
-                border: '1px solid var(--border)',
-                background: 'var(--bg-surface)',
-                color: 'var(--accent)',
-              }}
-            >
-              data-theme=&quot;{theme}&quot;
-            </span>
-            <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-              affects &lt;html&gt; — watch the whole page change
-            </span>
-          </div>
-        </Demo>
-
-        <CodeBlock
-          lang="js"
-          code={`// Toggle dark mode:
-const root = document.documentElement
-function toggleDark() {
-  const current = root.getAttribute('data-theme')
-  root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark')
-}
-
-// Persist preference:
-function setTheme(theme) {
-  root.setAttribute('data-theme', theme)
-  localStorage.setItem('theme', theme)
-}
-
-// Restore on page load (put this in <head>):
-const saved = localStorage.getItem('theme') ||
-  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-root.setAttribute('data-theme', saved)`}
-        />
-      </Section>
-
-      <Section title="Dark mode utilities" id="utilities">
+      <Section title="Utility Classes" id="utilities">
         <Prose>
           <p>
-            Utility classes with the <code>.dark:</code> prefix override color in dark mode.
+            Text and background utilities scoped to dark mode. Work under both strategies.
           </p>
         </Prose>
 
         <CodeBlock
           lang="html"
-          code={`<!-- Text color in dark mode -->
-<p class="dark:text-white">White in dark</p>
-<p class="dark:text-light">Light gray in dark</p>
-
-<!-- Background in dark mode -->
-<div class="dark:bg-dark">Dark background</div>
-<div class="dark:bg-darker">Darker background</div>`}
+          code={`<p class="sh-dark-text-white">White text in dark mode</p>
+<div class="sh-dark-bg-gray-900">Dark background in dark mode</div>
+<span class="sh-dark-text-primary">Primary color (light: blue-600, dark: blue-400)</span>`}
         />
 
         <CodeBlock
           lang="css"
-          filename="Generated .dark: classes"
-          code={`/* Available dark: text colors */
-.dark:text-white  { }
-.dark:text-light  { }
-.dark:text-silver { }
-.dark:text-gray   { }
+          filename="Available utilities"
+          code={`.sh-dark-text-{color}  /* Set text color in dark mode */
+.sh-dark-bg-{color}    /* Set background in dark mode */
 
-/* Available dark: background colors */
-.dark:bg-dark   { }
-.dark:bg-darker { }
-.dark:bg-black  { }
-
-/* All of the above apply under:
-   [data-theme="dark"] .dark:*
-   @media (prefers-color-scheme: dark) .dark:* */`}
+/* Colors: white, black, gray-50, gray-100, gray-200,
+   gray-700, gray-800, gray-900, primary, secondary,
+   success, info, warning, danger */`}
         />
       </Section>
 
-      <Section title="Custom dark theme" id="custom">
+      <Section title="SCSS Mixin" id="mixin">
         <CodeBlock
           lang="scss"
-          code={`// Override design tokens for dark theme
-[data-theme="dark"] {
-  // Color tokens
-  --color-white: #f4f4f4;
-  --color-dark:  #1a1a1a;
+          code={`@use 'scss-helper/src/dark/dark-mode' as dark;
 
-  // Custom component tokens
-  --card-bg:      #1e1e1e;
-  --card-border:  #2d2d2d;
-  --input-bg:     #252525;
-  --button-hover: #333;
-}
+.card {
+  background: white;
+  color: #333;
 
-// Or use the mixin in component styles:
-.nav {
-  background: var(--color-white);
-
-  @include dark-mode {
-    background: var(--card-bg, #1e1e1e);
-    border-bottom: 1px solid var(--card-border, #2d2d2d);
+  @include dark.dark-mode {
+    background: #1a1a1a;
+    color: #f1f1f1;
   }
 }`}
         />
+      </Section>
 
-        <Callout type="tip">
-          Define your dark values as CSS custom properties — this lets you override from JavaScript
-          or from the top of your stylesheet without recompiling SCSS.
-        </Callout>
+      <Section title="JavaScript Toggle" id="toggle">
+        <CodeBlock
+          lang="js"
+          code={`// Toggle dark mode
+const toggle = () => {
+  const html = document.documentElement;
+  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+};
+
+// Respect OS preference on load
+if (!html.dataset.theme) {
+  html.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark' : 'light';
+}`}
+        />
+      </Section>
+
+      <Section title="Custom Dark Palette" id="custom">
+        <CodeBlock
+          lang="scss"
+          code={`// Override the dark palette with your own colors
+$dark-palette: (
+  "brand": #a78bfa,
+  "surface": #1e1e2e,
+  "on-surface": #cdd6f4,
+) !default;
+
+@use 'scss-helper';`}
+        />
       </Section>
     </Page>
   )

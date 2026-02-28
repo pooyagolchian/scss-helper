@@ -1,18 +1,15 @@
 // =============================================================================
 // Dark Mode Utilities
 //
-// Applies dark token overrides under both:
-//   [data-theme="dark"]          — JS-controlled (document.documentElement.dataset.theme = 'dark')
+// Dual-strategy dark mode:
+//   [data-theme="dark"]                — JS-controlled toggle
 //   @media (prefers-color-scheme: dark) — OS preference
 //
-// Usage examples:
-//   .dark\:text-white  — white text in dark mode
-//   .dark\:bg-gray-900 — dark background in dark mode
-//
-// Mixin usage in your own SCSS:
-//   .card { background: white; @include dark-mode { background: #1a1a1a; } }
+// Usage:
+//   .card { @include dark-mode { background: #1a1a1a; } }
+//   <div class="sh-dark-text-white">…</div>
 // =============================================================================
-@import "../variables";
+@use "../variables" as vars;
 
 // Core mixin — scope any block to dark mode contexts
 @mixin dark-mode {
@@ -24,18 +21,16 @@
   }
 }
 
-// Standalone dark-mode token overrides
-// Override :root custom properties under dark context.
-// Consumers can extend this with their own dark palette.
+// Dark token overrides — semantic colors shift for dark backgrounds
 [data-theme="dark"] {
-  --color-primary:   #60a5fa;  // blue-400
-  --color-secondary: #9ca3af;  // gray-400
-  --color-success:   #4ade80;  // green-400
-  --color-info:      #38bdf8;  // sky-400
-  --color-warning:   #fbbf24;  // amber-400
-  --color-danger:    #f87171;  // red-400
-  --color-light:     #374151;  // gray-700
-  --color-dark:      #f9fafb;  // gray-50
+  --color-primary:   #60a5fa;
+  --color-secondary: #9ca3af;
+  --color-success:   #4ade80;
+  --color-info:      #38bdf8;
+  --color-warning:   #fbbf24;
+  --color-danger:    #f87171;
+  --color-light:     #374151;
+  --color-dark:      #f9fafb;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,8 +46,7 @@
   }
 }
 
-// Utility classes — .dark\:text-*, .dark\:bg-*
-// These require [data-theme="dark"] on a parent element.
+// Dark utility classes palette
 $dark-palette: (
   "white":      #ffffff,
   "black":      #000000,
@@ -70,9 +64,19 @@ $dark-palette: (
   "danger":     #f87171,
 ) !default;
 
+// Utility classes — work under both JS toggle and OS preference
 [data-theme="dark"] {
   @each $name, $value in $dark-palette {
-    .dark\:text-#{$name} { color: $value; }
-    .dark\:bg-#{$name}   { background-color: $value; }
+    .#{vars.$prefix}dark-text-#{$name} { color: $value; }
+    .#{vars.$prefix}dark-bg-#{$name}   { background-color: $value; }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :not([data-theme="light"]) {
+    @each $name, $value in $dark-palette {
+      .#{vars.$prefix}dark-text-#{$name} { color: $value; }
+      .#{vars.$prefix}dark-bg-#{$name}   { background-color: $value; }
+    }
   }
 }

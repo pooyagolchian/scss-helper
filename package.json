@@ -1,6 +1,6 @@
 {
   "name": "scss-helper",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "A remarkable SCSS/CSS utility toolkit — fills the gaps in Tailwind CSS v3/v4 and pure-SCSS projects with design tokens, fluid typography, container queries, dark mode, and more.",
   "main": "index.scss",
   "exports": {
@@ -35,11 +35,11 @@
   },
   "scripts": {
     "build": "pnpm build:tokens && pnpm build:css && pnpm build:grid",
-    "build:css": "sass src/style.scss dist/style.css --style=compressed --no-source-map --silence-deprecation=import,global-builtin,if-function && postcss dist/style.css --replace",
-    "build:grid": "sass src/only-css-grid.scss dist/only-css-grid.css --style=compressed --no-source-map --silence-deprecation=import,global-builtin && postcss dist/only-css-grid.css --replace",
-    "build:tokens": "sass src/tokens/_index.scss dist/tokens.css --style=compressed --no-source-map --silence-deprecation=import,global-builtin && postcss dist/tokens.css --replace",
-    "build:dev": "sass src/style.scss dist/style.css --style=expanded --silence-deprecation=import,global-builtin,if-function && sass src/only-css-grid.scss dist/only-css-grid.css --style=expanded --silence-deprecation=import,global-builtin && sass src/tokens/_index.scss dist/tokens.css --style=expanded --silence-deprecation=import,global-builtin",
-    "watch": "sass --watch src/style.scss:dist/style.css src/only-css-grid.scss:dist/only-css-grid.css src/tokens/_index.scss:dist/tokens.css --silence-deprecation=import,global-builtin,if-function"
+    "build:css": "sass src/style.scss dist/style.css --style=compressed --no-source-map && postcss dist/style.css --replace",
+    "build:grid": "sass src/only-css-grid.scss dist/only-css-grid.css --style=compressed --no-source-map && postcss dist/only-css-grid.css --replace",
+    "build:tokens": "sass src/tokens/_index.scss dist/tokens.css --style=compressed --no-source-map && postcss dist/tokens.css --replace",
+    "build:dev": "sass src/style.scss dist/style.css --style=expanded && sass src/only-css-grid.scss dist/only-css-grid.css --style=expanded && sass src/tokens/_index.scss dist/tokens.css --style=expanded",
+    "watch": "sass --watch src/style.scss:dist/style.css src/only-css-grid.scss:dist/only-css-grid.css src/tokens/_index.scss:dist/tokens.css"
   },
   "repository": {
     "type": "git",
@@ -68,7 +68,6 @@
     "tailwindcss",
     "design-tokens",
     "css-grid",
-    "flexbox",
     "dark-mode",
     "container-queries",
     "fluid-typography",

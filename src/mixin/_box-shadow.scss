@@ -1,5 +1,0 @@
-@mixin box-shadow($x, $y, $blur, $color, $spread: 0, $inset: false) {
-  $shadow-type: if($inset == true, inset, null);
-
-  box-shadow: $shadow-type $x $y $blur $spread $color;
-}

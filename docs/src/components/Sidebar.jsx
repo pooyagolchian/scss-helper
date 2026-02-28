@@ -20,7 +20,6 @@ const nav = [
     group: 'UTILITIES',
     links: [
       { to: '/typography', label: 'Typography' },
-      { to: '/spacing', label: 'Spacing' },
       { to: '/grid', label: 'CSS Grid' },
       { to: '/dark-mode', label: 'Dark Mode' },
       { to: '/container-queries', label: 'Container Queries' },
@@ -42,7 +41,7 @@ export default function Sidebar() {
       <div className={styles.brand}>
         <span className={styles.logo}>✦</span>
         <span className={styles.name}>scss-helper</span>
-        <span className={styles.version}>v4.0</span>
+        <span className={styles.version}>v5.0</span>
       </div>
 
       <nav className={styles.nav}>
