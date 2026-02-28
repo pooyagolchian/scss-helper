@@ -1,6 +1,6 @@
 {
   "name": "scss-helper",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "A remarkable SCSS/CSS utility toolkit — fills the gaps in Tailwind CSS v3/v4 and pure-SCSS projects with design tokens, fluid typography, container queries, dark mode, and more.",
   "main": "index.scss",
   "exports": {
