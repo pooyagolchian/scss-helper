@@ -68,7 +68,7 @@ export default function Home() {
       <div className={styles.hero}>
         <div className={styles.heroEyebrow}>
           <span className={styles.phi}>φ</span>
-          <span>scss-helper v3.0</span>
+          <span>scss-helper v4.0</span>
         </div>
         <h1 className={styles.heroTitle}>
           Fill the Gaps.

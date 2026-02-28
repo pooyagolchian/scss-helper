@@ -42,7 +42,7 @@ export default function Sidebar() {
       <div className={styles.brand}>
         <span className={styles.logo}>✦</span>
         <span className={styles.name}>scss-helper</span>
-        <span className={styles.version}>v3.0</span>
+        <span className={styles.version}>v4.0</span>
       </div>
 
       <nav className={styles.nav}>

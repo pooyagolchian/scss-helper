@@ -45,12 +45,15 @@
     "type": "git",
     "url": "git+https://github.com/pooyagolchian/scss-helper.git"
   },
-  "author": "Pooya Golchian <pooya.golchian@gmail.com>",
-  "license": "ISC",
+  "author": "Pooya Golchian <pooya.golchian@gmail.com> (https://pooya.blog)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "bugs": {
     "url": "https://github.com/pooyagolchian/scss-helper/issues"
   },
-  "homepage": "https://github.com/pooyagolchian/scss-helper#readme",
+  "homepage": "https://pooya.blog/scss-helper/",
   "pnpm": {
     "overrides": {
       "vite": "^8.0.0-beta.13"
