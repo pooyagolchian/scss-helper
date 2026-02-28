@@ -1,11 +1,9 @@
 name: Publish to npm
 
 on:
-  # Trigger when you push a version tag: v1.0.0, v3.1.2, etc.
   push:
     tags:
       - 'v*.*.*'
-  # Or manually from the Actions tab
   workflow_dispatch:
     inputs:
       version_bump:
@@ -16,8 +14,8 @@ on:
         options: [patch, minor, major]
 
 permissions:
-  contents: write   # needed to push the version commit + tag
-  id-token: write   # needed for npm provenance
+  contents: write
+  id-token: write
 
 jobs:
   publish:
@@ -27,23 +25,32 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # Use a PAT so git push triggers other workflows
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node (with npm registry auth)
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install pnpm
-        run: npm install -g pnpm@10
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
-      - name: Install root dependencies
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/pnpm/store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # Manual dispatch: bump version, commit & tag, then the push triggers
-      # the tag-based path on the NEXT run. Or just use one job for both.
+      - name: Build
+        run: pnpm build
+
       - name: Bump version (manual dispatch only)
         if: github.event_name == 'workflow_dispatch'
         run: |
@@ -52,10 +59,6 @@ jobs:
           npm version ${{ github.event.inputs.version_bump }} -m "chore: release v%s"
           git push --follow-tags
 
-      - name: Build SCSS → dist/
-        run: pnpm build
-
-      # Publish to npm with provenance (verifiable build origin)
       - name: Publish to npm
         run: npm publish --provenance --access public
         env:

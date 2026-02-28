@@ -3,16 +3,16 @@ name: Deploy Docs to GitHub Pages
 on:
   push:
     branches: [main]
-  # Allow manual trigger
+    paths:
+      - 'docs/**'
+      - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
 
-# Sets permissions to allow GitHub Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -30,18 +30,16 @@ jobs:
           node-version: 22
 
       - name: Install pnpm
-        run: npm install -g pnpm@10
-
-      - name: Get pnpm store path
-        id: pnpm-cache
-        run: echo "store=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       - name: Cache pnpm store
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.store }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('docs/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-
+          path: ~/.local/share/pnpm/store
+          key: ${{ runner.os }}-pnpm-docs-${{ hashFiles('docs/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-docs-
 
       - name: Install docs dependencies
         working-directory: docs
@@ -50,15 +48,12 @@ jobs:
       - name: Build docs
         working-directory: docs
         env:
-          # Matches the GitHub Pages URL: https://<user>.github.io/<repo>/
           VITE_BASE_URL: /scss-helper/
         run: pnpm build
 
-      # SPA fallback: copy index.html → 404.html so deep links work on GH Pages
       - name: Create SPA 404 fallback
         run: cp docs/dist/index.html docs/dist/404.html
 
-      # Prevent GitHub Pages Jekyll from ignoring _assets folders
       - name: Add .nojekyll
         run: touch docs/dist/.nojekyll
 
