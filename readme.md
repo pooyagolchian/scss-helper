@@ -5,25 +5,44 @@
 [![npm version](https://img.shields.io/npm/v/scss-helper.svg)](https://www.npmjs.com/package/scss-helper)
 [![npm downloads](https://img.shields.io/npm/dm/scss-helper.svg)](https://www.npmjs.com/package/scss-helper)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Bundle Size](https://img.shields.io/badge/gzip-5.1KB-brightgreen)](https://www.npmjs.com/package/scss-helper)
 
 📖 **[Full Documentation & Interactive Demos →](https://pooya.blog/scss-helper/)**
 
 ---
 
+## Features
+
+- **Design Tokens** — 30+ CSS custom properties for colors, spacing & typography
+- **12-Column CSS Grid** — responsive breakpoints, gap utilities, auto-fit layouts
+- **Fluid Typography** — smooth `clamp()`-based scaling, no breakpoints needed
+- **Dark Mode** — dual strategy: `data-theme` attribute + `prefers-color-scheme`
+- **Container Queries** — component-level responsive design
+- **Golden Ratio** — φ-based typography, spacing, and grid layouts
+- **Animations & Transitions** — 12 animations + 5 transition presets, all `prefers-reduced-motion` aware
+- **Tailwind CSS Plugin** — use tokens and utilities alongside Tailwind v3
+- **Modern Sass** — 100% `@use`/`@forward`, zero deprecation warnings
+- **Namespaced** — `sh-` prefix on all classes, configurable via `$prefix`
+- **Tiny** — 5.1 KB gzipped (full bundle), 1.7 KB grid-only, 583 B tokens-only
+
+---
+
 ## What's New in v5
 
-- **Modern Sass module system** — all files use `@use`/`@forward` (zero `@import` deprecation warnings)
-- **Namespaced utility classes** — all classes use the `sh-` prefix to avoid collisions with Tailwind
-- **Configurable prefix** — override `$prefix` via `@use "scss-helper" with ($prefix: "my-")`
-- **Smaller footprint** — removed ~25KB of legacy modules (px-based helpers, flexbox grid, modifier classes)
-- **Fixed bugs** — removed broken `attr(data-cq)` container-name rule, fixed dark mode utility consistency
-- **DRY CSS grid** — responsive variants deduplicated via internal mixin, consistent `-xs`/`-sm`/`-md`/`-lg`/`-xl` suffixes
-- **Prefixed keyframes** — `sh-spin`, `sh-bounce`, etc. no longer collide with Tailwind's keyframes
+| Change | Details |
+|--------|---------|
+| Modern Sass modules | All files migrated to `@use`/`@forward` — zero `@import` deprecation warnings |
+| Namespaced classes | All utility classes use the `sh-` prefix to avoid Tailwind collisions |
+| Configurable prefix | `@use "scss-helper" with ($prefix: "my-")` |
+| Smaller footprint | Removed ~25 KB of legacy modules (px helpers, flexbox grid, modifiers) |
+| Bug fixes | Removed broken `attr(data-cq)` rule; fixed dark mode utility consistency |
+| DRY grid | Responsive variants deduplicated via mixin; consistent `-xs`/`-sm`/`-md`/`-lg`/`-xl` suffixes |
+| Prefixed keyframes | `sh-spin`, `sh-bounce`, etc. no longer collide with Tailwind keyframes |
 
 ### Breaking Changes (v4 → v5)
 
-| v4 Class | v5 Class |
-|----------|----------|
+| v4 | v5 |
+|----|-----|
 | `.grid` | `.sh-grid` |
 | `.col-6` | `.sh-col-6` |
 | `.gap-4` | `.sh-gap-4` |
@@ -35,7 +54,16 @@
 | `.dark\:text-white` | `.sh-dark-text-white` |
 | `@import "scss-helper"` | `@use "scss-helper"` |
 
-Removed modules: flexbox grid (`.sg-row`/`.sg-col-*`), px-based margin/padding helpers, font-size helpers (`.fs-*`), modifier classes (`.text-*`, `.bg-*`), clearfix, border-radius/box-shadow wrapper mixins.
+**Removed modules:** flexbox grid (`.sg-row`/`.sg-col-*`), px-based margin/padding helpers, font-size helpers (`.fs-*`), modifier classes (`.text-*`, `.bg-*`), clearfix, border-radius/box-shadow wrapper mixins.
+
+### Migration Checklist
+
+1. Update imports: replace `@import` with `@use "scss-helper"`
+2. Find & replace class names: add `sh-` prefix (e.g. `.grid` → `.sh-grid`)
+3. Update breakpoint suffixes: `-large` → `-lg`, `-medium` → `-md`, etc.
+4. Update keyframe references: `spin` → `sh-spin`, `bounce` → `sh-bounce`
+5. Remove references to deleted modules (see table above)
+6. Test dark mode — class format changed from `.dark\:*` to `.sh-dark-*`
 
 ---
 
@@ -534,13 +562,13 @@ module.exports = {
 
 ## Build Outputs
 
-| Export Path | File | Description |
-|------------|------|-------------|
-| `scss-helper` | `index.scss` | Full SCSS entry point |
-| `scss-helper/css` | `dist/style.css` | Full compiled CSS |
-| `scss-helper/css/grid` | `dist/only-css-grid.css` | Grid system only |
-| `scss-helper/css/tokens` | `dist/tokens.css` | Design tokens only |
-| `scss-helper/plugin` | `plugin.js` | Tailwind CSS v3 plugin |
+| Export Path | File | Size | Gzipped | Description |
+|------------|------|------|---------|-------------|
+| `scss-helper` | `index.scss` | — | — | Full SCSS entry point |
+| `scss-helper/css` | `dist/style.css` | 29 KB | 5.1 KB | Full compiled CSS |
+| `scss-helper/css/grid` | `dist/only-css-grid.css` | 11 KB | 1.7 KB | Grid system only |
+| `scss-helper/css/tokens` | `dist/tokens.css` | 1.8 KB | 583 B | Design tokens only |
+| `scss-helper/plugin` | `plugin.js` | 5.4 KB | — | Tailwind CSS v3 plugin |
 
 ---
 
@@ -586,11 +614,12 @@ $dark-palette: (
 
 ## Browser Support
 
-- Chrome/Edge 105+
-- Firefox 110+
-- Safari 16+
-
-Container queries require Chrome 105+, Firefox 110+, Safari 16+.
+| Feature | Chrome | Edge | Firefox | Safari |
+|---------|--------|------|---------|--------|
+| CSS Grid, Tokens, Typography | 57+ | 16+ | 52+ | 10.1+ |
+| Container Queries | 105+ | 105+ | 110+ | 16+ |
+| `clamp()` fluid typography | 79+ | 79+ | 75+ | 13.1+ |
+| `prefers-color-scheme` | 76+ | 79+ | 67+ | 12.1+ |
 
 ---
 
@@ -619,6 +648,24 @@ pnpm build:dev
 3. Commit changes: `git commit -m 'Add my feature'`
 4. Push: `git push origin feature/my-feature`
 5. Open a Pull Request
+
+---
+
+## Changelog
+
+### v5.0.0
+
+- Modern Sass `@use`/`@forward` module system (zero `@import` deprecation warnings)
+- `sh-` namespaced utility classes with configurable `$prefix`
+- Removed ~25 KB of legacy helper modules
+- DRY CSS grid, prefixed keyframes, dark mode fixes
+- Updated Tailwind plugin & documentation
+
+### v4.0.0
+
+- Design tokens, fluid typography, container queries, golden ratio layouts
+- Tailwind CSS v3 plugin
+- Dark mode with dual strategy
 
 ---
 
